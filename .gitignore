@@ -1,4 +1,7 @@
 .vscode
 /config/pkey.file
 /public/vendor
+/storage/cache/*.*
+/storage/logs/*.*
+/storage/*.*
 /vendor
