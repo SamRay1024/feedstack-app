@@ -28,6 +28,7 @@ export let feeds = {
 		{
 			this.updateCount(event.detail.index, event.detail.name, event.detail.diff);
 		});
+		window.addEventListener('feeds.unselect', () => { this.iCurrentFeedId = 0; });
 		window.addEventListener('articles.fetch', () => { this.fetchArticles(); });
 	},
 
@@ -184,6 +185,7 @@ export let feeds = {
 	select(id, index)
 	{
 		this.iCurrentFeedId = id;
+		this.$dispatch('views.unselect');
 		this.$dispatch('articles.load.feed', {'id': id, 'index': index});
 	},
 

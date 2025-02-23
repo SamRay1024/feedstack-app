@@ -1,6 +1,7 @@
 import * as utils from '../utils.js';
 
 export let views = {
+	sCurrentView: '',
 	counts: {
 		'today': 0, 'today_unread': 0,
 		'later': 0, 'later_unread': 0,
@@ -15,6 +16,8 @@ export let views = {
 		{
 			this.counts[event.detail.view] = event.detail.count;
 		});
+
+		window.addEventListener('views.unselect', () => { this.sCurrentView = ''; });
 	},
 
 	reloadCounts()
@@ -30,6 +33,8 @@ export let views = {
 
 	select(sView)
 	{
+		this.sCurrentView = sView;
+		this.$dispatch('feeds.unselect');
 		this.$dispatch('articles.load.view', {view: sView});
 	}
 }

@@ -6,19 +6,22 @@
 	</h1>
 
 	<ul id="views" class="list pan" x-data="views">
-		<li class="strong" @click="select('today')">
+		<li class="strong" @click="select('today')"
+			:class="{'current': sCurrentView == 'today'}">
 			<i class="ti ti-inbox"></i> <?= __('Today') ?>
 
 			<span class="view-count meta"
 				x-text="counts.today > 0 ? counts.today : ''"></span>
 		</li>
-		<li class="strong" @click="select('later')">
+		<li class="strong" @click="select('later')"
+			:class="{'current': sCurrentView == 'later'}">
 			<i class="ti ti-pin"></i> <?= __('Read later') ?>
 
 			<span class="view-count meta"
 				x-text="counts.later > 0 ? counts.later : ''"></span>
 		</li>
-		<li class="strong" @click="select('archives')">
+		<li class="strong" @click="select('archives')"
+			:class="{'current': sCurrentView == 'archives'}">
 			<i class="ti ti-archive"></i> <?= __('Archives') ?>
 
 			<span class="view-count meta"
