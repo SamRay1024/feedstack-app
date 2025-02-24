@@ -7,21 +7,21 @@
 
 	<ul id="views" class="list pan" x-data="views">
 		<li class="strong" @click="select('today')"
-			:class="{'current': sCurrentView == 'today'}">
+			:class="$store.current.view == 'today' && 'current'">
 			<i class="ti ti-inbox"></i> <?= __('Today') ?>
 
 			<span class="view-count meta"
 				x-text="counts.today > 0 ? counts.today : ''"></span>
 		</li>
 		<li class="strong" @click="select('later')"
-			:class="{'current': sCurrentView == 'later'}">
+			:class="$store.current.view == 'later' && 'current'">
 			<i class="ti ti-pin"></i> <?= __('Read later') ?>
 
 			<span class="view-count meta"
 				x-text="counts.later > 0 ? counts.later : ''"></span>
 		</li>
 		<li class="strong" @click="select('archives')"
-			:class="{'current': sCurrentView == 'archives'}">
+			:class="$store.current.view == 'archives' && 'current'">
 			<i class="ti ti-archive"></i> <?= __('Archives') ?>
 
 			<span class="view-count meta"
@@ -39,7 +39,8 @@
 
 		<ul id="feeds-list" class="list pan clear">
 			<template x-for="(feed, feedIndex) in feeds">
-				<li @click="select(feed.id, feedIndex)" :class="{'current': feed.id == iCurrentFeedId}">
+				<li @click="select(feed.id, feedIndex)"
+					:class="$store.current.feed == feed.id && 'current'">
 					<span class="feed-title"
 						x-text="feed.attributes.title" :title="feed.attributes.url"></span>
 

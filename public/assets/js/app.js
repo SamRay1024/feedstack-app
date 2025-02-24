@@ -6,9 +6,12 @@ import {article} from './components/article.js';
 document.addEventListener('alpine:init', () =>
 {
 	/**
-	 * Current view among 'today, later, archives'
+	 * Currents values.
+	 * 
+	 * - view among 'today, later, archives',
+	 * - feed id
 	 */
-	Alpine.store('view', 'today');
+	Alpine.store('current', {'view': '', 'feed': 0});
 
 	/**
 	 * Main actions.

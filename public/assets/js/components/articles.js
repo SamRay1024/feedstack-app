@@ -44,18 +44,23 @@ export let articles = {
 	{
 		this.iFeedId = iFeedId;
 		this.iFeedIndex = iFeedIndex;
+
+		this.$store.current.view = '';
+		this.$store.current.feed = iFeedId;
 		
 		utils._fetch('GET', 'articles/?feed='+ iFeedId).then(response =>
 		{
 			if (response.data)
 				this.articles = response.data;
-		})
-		.then(reponse => { this.$store.view = ''; });
+		});
 	},
 
 	loadFromView(sView)
 	{
 		this.iFeedId = sView;
+
+		this.$store.current.view = sView;
+		this.$store.current.feed = 0;
 		
 		utils._fetch('GET', 'articles/?'+ sView).then(response =>
 		{
@@ -64,8 +69,7 @@ export let articles = {
 				this.articles = response.data;
 				this.$dispatch('views.updateCount', {'view': sView, 'count': this.articles.length});
 			}
-		})
-		.then(response => { this.$store.view = sView; });
+		});
 	},
 
 	select(iIndex)
