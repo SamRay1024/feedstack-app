@@ -18,11 +18,8 @@ class GlobalsController extends RestController
 				$articles = $this->app->make(Articles::class, [$this->db]);
 
 				$this->response->json(['data' => [
-					'today' 		=> $articles->getTodayCount(),
-					'today_unread'	=> $articles->getTodayCount(true),
-					'later' 		=> $articles->getReadLaterCount(),
-					'later_unread' 	=> $articles->getReadLaterCount(true),
-					'archives'		=> $articles->getArchivesCount()
+					'today'	=> $articles->getTodayCount(true),
+					'later'	=> $articles->getReadLaterCount(true)
 				]]);
 				break;
 			

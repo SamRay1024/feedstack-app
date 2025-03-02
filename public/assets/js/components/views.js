@@ -1,19 +1,13 @@
 import * as utils from '../utils.js';
 
 export let views = {
-	counts: {
-		'today': 0, 'today_unread': 0,
-		'later': 0, 'later_unread': 0,
-		'archives': 0
-	},
-
 	init()
 	{
 		this.reloadCounts();
 
-		window.addEventListener('views.updateCount', (event) =>
+		window.addEventListener('views.reloadCounts', () =>
 		{
-			this.counts[event.detail.view] = event.detail.count;
+			this.reloadCounts();
 		});
 	},
 
@@ -23,7 +17,7 @@ export let views = {
 		{
 			if (response.data)
 			{
-				this.counts = response.data;	
+				this.$store.counts = response.data;	
 			}
 		});
 	},

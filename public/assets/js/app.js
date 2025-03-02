@@ -12,6 +12,7 @@ document.addEventListener('alpine:init', () =>
 	 * - feed id
 	 */
 	Alpine.store('current', {'view': '', 'feed': 0});
+	Alpine.store('counts', {'today': 0, 'later': 0});
 
 	/**
 	 * Main actions.

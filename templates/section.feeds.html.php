@@ -11,21 +11,18 @@
 			<i class="ti ti-inbox"></i> <?= __('Today') ?>
 
 			<span class="view-count meta"
-				x-text="counts.today > 0 ? counts.today : ''"></span>
+				x-text="$store.counts.today > 0 ? $store.counts.today : ''"></span>
 		</li>
 		<li class="strong" @click="select('later')"
 			:class="$store.current.view == 'later' && 'current'">
 			<i class="ti ti-pin"></i> <?= __('Read later') ?>
 
 			<span class="view-count meta"
-				x-text="counts.later > 0 ? counts.later : ''"></span>
+				x-text="$store.counts.later > 0 ? $store.counts.later : ''"></span>
 		</li>
 		<li class="strong" @click="select('archives')"
 			:class="$store.current.view == 'archives' && 'current'">
 			<i class="ti ti-archive"></i> <?= __('Archives') ?>
-
-			<span class="view-count meta"
-				x-text="counts.archives > 0 ? counts.archives : ''"></span>
 		</li>
 	</ul>
 
