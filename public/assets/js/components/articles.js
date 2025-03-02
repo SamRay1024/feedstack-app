@@ -67,7 +67,6 @@ export let articles = {
 			if (response.data)
 			{
 				this.articles = response.data;
-				this.$dispatch('views.updateCount', {'view': sView, 'count': this.articles.length});
 			}
 		});
 	},
@@ -86,7 +85,7 @@ export let articles = {
 		if (this.iMarkAsReadTimeoutId)
 			clearTimeout(this.iMarkAsReadTimeoutId);
 
-		if (iIndex >= 0)
+		if (iIndex >= 0 && !this.articles[iIndex].attributes.is_read)
 			this.iMarkAsReadTimeoutId = setTimeout(
 				(that, iIndex) => { that.markAsRead(iIndex); },
 				3000, this, iIndex
@@ -99,10 +98,15 @@ export let articles = {
 		this.articles[iIndex].attributes.is_new = false;
 
 		this.$dispatch('feeds.updateCount', {
-			'index': this.iFeedIndex,
-			'name': 'count_is_unread',
+			'feed_id': this.articles[iIndex].attributes.feed_id,
+			'counter_name': 'count_is_unread',
 			'diff': (bIsRead ? -1 : 1)
 		});
+
+		if (this.$store.current.view != '')
+			this.$store.counts[this.$store.current.view]--;
+		else
+			this.$dispatch('views.reloadCounts');
 
 		utils._fetch('PUT', 'articles/'+ this.articles[iIndex].id, JSON.stringify({is_read: bIsRead}));
 	},
@@ -119,7 +123,7 @@ export let articles = {
 				if (this.iSelectedIndex > -1)
 					this.select(iIndex);
 
-				this.$dispatch('views.updateCount', {'view': 'later', 'count': this.articles.length});
+				this.$store.counts.later++;
 			}
 		});
 	},
@@ -137,15 +141,15 @@ export let articles = {
 				if (!this.articles[iIndex].attributes.is_read)
 				{
 					this.$dispatch('feeds.updateCount', {
-						'index': this.iFeedIndex,
-						'name': 'count_is_unread',
+						'feed_id': this.articles[iIndex].attributes.feed_id,
+						'counter_name': 'count_is_unread',
 						'diff': -1
 					});
 				}
 
 				this.$dispatch('feeds.updateCount', {
-					'index': this.iFeedIndex,
-					'name': 'count_articles',
+					'feed_id': this.articles[iIndex].attributes.feed_id,
+					'counter_name': 'count_articles',
 					'diff': -1	
 				});
 
@@ -171,15 +175,15 @@ export let articles = {
 				if (!this.articles[iIndex].attributes.is_read)
 				{
 					this.$dispatch('feeds.updateCount', {
-						'index': this.iFeedIndex,
-						'name': 'count_is_unread',
+						'feed_id': this.articles[iIndex].attributes.feed_id,
+						'counter_name': 'count_is_unread',
 						'diff': -1
 					});
 				}
 
 				this.$dispatch('feeds.updateCount', {
-					'index': this.iFeedIndex,
-					'name': 'count_articles',
+					'feed_id': this.articles[iIndex].attributes.feed_id,
+					'counter_name': 'count_articles',
 					'diff': -1	
 				});
 

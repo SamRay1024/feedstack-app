@@ -82,7 +82,7 @@ class FeedsController extends RestController
 			->run();
 
 		while ($feed = $feeds->fetch())
-			$data[] = $this->buildItem($feed);
+			$data['f'.$feed->id] = $this->buildItem($feed);
 
 		$this->response->json(['data' => $data]);
 	}

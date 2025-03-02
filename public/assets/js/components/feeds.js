@@ -25,7 +25,7 @@ export let feeds = {
 		window.addEventListener('feeds.delete', (event) => { this.delete(event.detail); });
 		window.addEventListener('feeds.updateCount', (event) =>
 		{
-			this.updateCount(event.detail.index, event.detail.name, event.detail.diff);
+			this.updateCount(event.detail.feed_id, event.detail.counter_name, event.detail.diff);
 		});
 		window.addEventListener('articles.fetch', () => { this.fetchArticles(); });
 	},
@@ -44,7 +44,9 @@ export let feeds = {
 
 	fetchArticles()
 	{
-		Promise.all(this.feeds.map(feed => this.updateFeed(feed)));
+		Promise
+			.all(Object.values(this.feeds).map(feed => this.updateFeed(feed)))
+			.then(() => this.$dispatch('views.reloadCounts'));
 	},
 
 	updateFeed(feed, iSelectIndex = -1)
@@ -186,9 +188,9 @@ export let feeds = {
 		this.$dispatch('articles.load.feed', {'id': id, 'index': index});
 	},
 
-	updateCount(iFeedIndex, sCountName, iDiff = 0)
+	updateCount(iFeedId, sCountName, iDiff = 0)
 	{
-		let feed = this.feeds[iFeedIndex];
+		let feed = this.feeds['f'+iFeedId];
 
 		if (feed && feed.attributes[sCountName] != undefined)
 		{
