@@ -14,9 +14,11 @@ class Articles extends Table
 	const COL_DELETED_AT_NAME = 'deleted_at';
 
 	protected $aColumns = [
-		'feed_id'	=> \PDO::PARAM_INT,
-		'is_new'	=> \PDO::PARAM_BOOL,
-		'is_read'	=> \PDO::PARAM_BOOL
+		'feed_id'		=> \PDO::PARAM_INT,
+		'is_new'		=> \PDO::PARAM_INT,
+		'is_read'		=> \PDO::PARAM_INT,
+		'is_archive'	=> \PDO::PARAM_INT,
+		'is_read_later'	=> \PDO::PARAM_INT
 	];
 
 	public function filterFields(array $aFields, $id = 0): array
@@ -63,7 +65,12 @@ class Articles extends Table
 			$aFiltered['is_new'] = 0;
 			$aFiltered['is_read_later'] = 0;
 		}
-
+		
+		if (isset($aFiltered['is_read_later']) && $aFiltered['is_read_later'])
+		{
+			$aFiltered['is_read'] = 0;
+		}
+		
 		return $aFiltered;
 	}
 
