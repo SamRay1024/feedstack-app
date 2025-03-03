@@ -31,12 +31,14 @@
 				</span>
 
 				<span class="art-actions hidden small">
-					<span @click="readLater(artIndex)"><i class="ti"
+					<span @click="markForLater(artIndex)"><i class="ti"
 						:class="{'ti-pin': !art.attributes.is_read_later, 'ti-pin-filled': art.attributes.is_read_later}"></i></span>
+					
 					<span x-data="archiveArticle(artIndex)">
 						<i class="ti ti-check" title="<?= __('Confirm') ?>" x-bind="confirm"></i>
 						<i class="ti ti-archive" title="<?= __('Archive article') ?>" x-bind="trigger"></i>
 					</span>
+
 					<span x-data="deleteArticle(artIndex)">
 						<i class="ti ti-check" title="<?= __('Confirm') ?>" x-bind="confirm"></i>
 						<i class="ti ti-trash" title="<?= __('Delete article') ?>" x-bind="trigger"></i>

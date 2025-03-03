@@ -34,9 +34,9 @@ export let articles = {
 			this.select(event.detail);
 		});
 
-		window.addEventListener('articles.readLater', (event) =>
+		window.addEventListener('articles.markForLater', (event) =>
 		{
-			this.readLater(event.detail >= 0 ? event.detail : this.iSelectedIndex);
+			this.markForLater(event.detail >= 0 ? event.detail : this.iSelectedIndex);
 		});
 	},
 
@@ -94,37 +94,40 @@ export let articles = {
 
 	markAsRead(iIndex, bIsRead = true)
 	{
-		this.articles[iIndex].attributes.is_read = bIsRead;
-		this.articles[iIndex].attributes.is_new = false;
-
-		this.$dispatch('feeds.updateCount', {
-			'feed_id': this.articles[iIndex].attributes.feed_id,
-			'counter_name': 'count_is_unread',
-			'diff': (bIsRead ? -1 : 1)
-		});
-
-		if (this.$store.current.view != '')
-			this.$store.counts[this.$store.current.view]--;
-		else
-			this.$dispatch('views.reloadCounts');
-
-		utils._fetch('PUT', 'articles/'+ this.articles[iIndex].id, JSON.stringify({is_read: bIsRead}));
-	},
-
-	readLater(iIndex, bIsLater = true)
-	{
-		utils._fetch('PUT', 'articles/'+ this.articles[iIndex].id, JSON.stringify({is_read_later: bIsLater}))
+		utils._fetch('PUT', 'articles/'+ this.articles[iIndex].id, JSON.stringify({is_read: bIsRead}))
 		.then((response) =>
 		{
-			if (response.status == 204)
-			{
-				this.articles.splice(iIndex, 1);
+			if (response.status != 204)
+				return;
 
-				if (this.iSelectedIndex > -1)
-					this.select(iIndex);
+			this.articles[iIndex].attributes.is_read = bIsRead;
+			this.articles[iIndex].attributes.is_new = false;
 
-				this.$store.counts.later++;
-			}
+			this.$dispatch('feeds.updateCount', {
+				'feed_id': this.articles[iIndex].attributes.feed_id,
+				'counter_name': 'count_is_unread',
+				'diff': (bIsRead ? -1 : 1)
+			});
+
+			if (this.$store.current.view != '')
+				this.$store.counts[this.$store.current.view]--;
+			else
+				this.$dispatch('views.reloadCounts');
+		});
+	},
+
+	markForLater(iIndex)
+	{
+		let bIsLater = !this.articles[iIndex].attributes.is_read_later;
+
+		utils._fetch('PUT', 'articles/' + this.articles[iIndex].id, JSON.stringify({is_read_later: bIsLater}))
+		.then((response) =>
+		{
+			if (response.status != 204)
+				return;
+			
+			this.removeArticle();
+			this.$store.counts.later += (bIsLater ? 1 : -1);
 		});
 	},
 
@@ -136,29 +139,11 @@ export let articles = {
 		utils._fetch('PUT', 'articles/'+ this.articles[iIndex].id, JSON.stringify({is_archive: bArchive}))
 		.then((response) =>
 		{
-			if (response.status == 204)
-			{
-				if (!this.articles[iIndex].attributes.is_read)
-				{
-					this.$dispatch('feeds.updateCount', {
-						'feed_id': this.articles[iIndex].attributes.feed_id,
-						'counter_name': 'count_is_unread',
-						'diff': -1
-					});
-				}
-
-				this.$dispatch('feeds.updateCount', {
-					'feed_id': this.articles[iIndex].attributes.feed_id,
-					'counter_name': 'count_articles',
-					'diff': -1	
-				});
-
-				this.articles.splice(iIndex, 1);
-
-				// Select next article only if one already selected
-				if (this.iSelectedIndex > -1)
-					this.select(iIndex);
-			}
+			if (response.status != 204)
+				return;
+				
+			this.updateArticleCounters(iIndex);
+			this.removeArticle(iIndex);
 		});	
 	},
 
@@ -170,29 +155,43 @@ export let articles = {
 		utils._fetch('DELETE', 'articles/'+ this.articles[iIndex].id)
 		.then((response) =>
 		{
-			if (response.status == 204)
-			{
-				if (!this.articles[iIndex].attributes.is_read)
-				{
-					this.$dispatch('feeds.updateCount', {
-						'feed_id': this.articles[iIndex].attributes.feed_id,
-						'counter_name': 'count_is_unread',
-						'diff': -1
-					});
-				}
+			if (response.status != 204)
+				return;
 
-				this.$dispatch('feeds.updateCount', {
-					'feed_id': this.articles[iIndex].attributes.feed_id,
-					'counter_name': 'count_articles',
-					'diff': -1	
-				});
+			this.updateArticleCounters(iIndex);
+			this.removeArticle(iIndex);
+		});
+	},
 
-				this.articles.splice(iIndex, 1);
+	removeArticle(iIndex)
+	{
+		this.articles.splice(iIndex, 1);
 
-				// Select next article only if one already selected
-				if (this.iSelectedIndex > -1)
-					this.select(iIndex);
-			}
+		// Select next article only if one already selected
+		if (this.iSelectedIndex > -1)
+			this.select(iIndex);
+	},
+
+	updateArticleCounters(iIndex)
+	{
+		if (!this.articles[iIndex].attributes.is_read)
+		{
+			this.$dispatch('feeds.updateCount', {
+				'feed_id': this.articles[iIndex].attributes.feed_id,
+				'counter_name': 'count_is_unread',
+				'diff': -1
+			});
+
+			if (['today', 'later'].includes(this.$store.current.view))
+				this.$store.counts[this.$store.current.view]--;
+			else
+				this.$dispatch('views.reloadCounts');
+		}
+
+		this.$dispatch('feeds.updateCount', {
+			'feed_id': this.articles[iIndex].attributes.feed_id,
+			'counter_name': 'count_articles',
+			'diff': -1	
 		});
 	},
 

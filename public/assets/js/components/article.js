@@ -23,6 +23,6 @@ export let article = {
 
 	readLater()
 	{
-		this.$dispatch('articles.readLater', this.iCurrentIndex);
+		this.$dispatch('articles.markForLater', this.iCurrentIndex);
 	}
 }
