@@ -15,10 +15,10 @@ class Articles extends Table
 
 	protected $aColumns = [
 		'feed_id'		=> \PDO::PARAM_INT,
-		'is_new'		=> \PDO::PARAM_INT,
-		'is_read'		=> \PDO::PARAM_INT,
-		'is_archive'	=> \PDO::PARAM_INT,
-		'is_read_later'	=> \PDO::PARAM_INT
+		'is_new'		=> \PDO::PARAM_BOOL,
+		'is_read'		=> \PDO::PARAM_BOOL,
+		'is_archive'	=> \PDO::PARAM_BOOL,
+		'is_read_later'	=> \PDO::PARAM_BOOL
 	];
 
 	public function filterFields(array $aFields, $id = 0): array
@@ -70,7 +70,7 @@ class Articles extends Table
 		{
 			$aFiltered['is_read'] = 0;
 		}
-		
+
 		return $aFiltered;
 	}
 
@@ -101,7 +101,7 @@ class Articles extends Table
 		return $this->makeQueryCount()
 			->where(
 				self::COL_DELETED_AT_NAME .' IS NULL AND '
-				.'feed_id = :id AND is_read = 0'
+				.'feed_id = :id AND is_read = 0 AND is_read_later = 0 AND is_archive = 0'
 			)
 			->setParameter('id', $iFeedId)
 			->run()->fetchColumn();
@@ -118,7 +118,7 @@ class Articles extends Table
 		return $this->makeQueryCount()
 			->where(
 				self::COL_DELETED_AT_NAME .' IS NULL AND '
-				.'feed_id = :id AND is_new = 1'
+				.'feed_id = :id AND is_new = 1 AND is_read_later = 0 AND is_archive = 0'
 			)
 			->setParameter('id', $iFeedId)
 			->run()
@@ -136,7 +136,8 @@ class Articles extends Table
 		return $this->makeQueryCount()
 			->where(
 				self::COL_DELETED_AT_NAME.' IS NULL AND '
-				.'is_archive = 0 AND created_at >= :created_at'
+				.'is_archive = 0 AND created_at >= :created_at AND '
+				.'is_read_later = 0'
 				.($bUnreadOnly ? ' AND is_read = 0' : '')
 			)
 			->setParameter('created_at', date('Y-m-d') .' 00:00:00')

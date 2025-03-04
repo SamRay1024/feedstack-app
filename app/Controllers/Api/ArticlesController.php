@@ -49,8 +49,9 @@ class ArticlesController extends RestController
 	{
 		$aData = [];
 		$aWhere = [
-			'deleted_at IS NULL',
-			'is_archive = '.($this->hasParam('archives') ? '1' : '0')
+			'deleted'	=> 'deleted_at IS NULL',
+			'later'		=> 'is_read_later = 0',
+			'archive'	=> 'is_archive = '.($this->hasParam('archives') ? '1' : '0')
 		];
 
 		if ($this->hasParam('feed'))
@@ -59,11 +60,14 @@ class ArticlesController extends RestController
 		if ($this->hasParam('today'))
 		{
 			$aWhere[] = 'created_at >= "'.date('Y-m-d').' 00:00:00"';
-			$aWhere[] = 'is_read_later = 0';
+			$aWhere['archive'] = 'is_archive = 0';
 		}
 		
 		if ($this->hasParam('later'))
-			$aWhere[] = 'is_read_later = 1';
+		{
+			$aWhere['later'] = 'is_read_later = 1';
+			$aWhere['archive'] = 'is_archive = 0';
+		}
 
 		$articles = $this->articles->findRows('*', $aWhere, 'pub_date DESC');
 
