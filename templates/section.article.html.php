@@ -9,8 +9,8 @@
 
 				<span @click="readLater""><i class="wbtn ti"
 					:class="{'ti-pin': !current.attributes.is_read_later, 'ti-pin-filled': current.attributes.is_read_later}"></i></span>
-				
-				<span x-data="archiveArticle()">
+
+				<span x-data="archiveArticle()" x-show="!art.attributes.is_archive">
 					<i class="wbtn ti ti-check" title="<?= __('Confirm') ?>" x-bind="confirm"></i>
 					<i class="wbtn ti ti-archive" title="<?= __('Archive article') ?>" x-bind="trigger"></i>
 				</span>
