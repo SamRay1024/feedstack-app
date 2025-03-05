@@ -19,7 +19,7 @@ export let feeds = {
 		});
 
 		this.loadFeeds();
-		setTimeout(() => { this.fetchArticles(); }, 5000);
+		setTimeout(() => { this.fetchAll(); }, 5000);
 
 		window.addEventListener('feeds.reload', () => { this.loadFeeds(); });
 		window.addEventListener('feeds.delete', (event) => { this.delete(event.detail); });
@@ -27,7 +27,7 @@ export let feeds = {
 		{
 			this.updateCount(event.detail.feed_id, event.detail.counter_name, event.detail.diff);
 		});
-		window.addEventListener('articles.fetch', () => { this.fetchArticles(); });
+		window.addEventListener('feeds.fetchAll', () => { this.fetchAll(); });
 	},
 
 	loadFeeds()
@@ -42,11 +42,17 @@ export let feeds = {
 		});
 	},
 
-	fetchArticles()
+	fetchAll()
 	{
 		Promise
 			.all(Object.values(this.feeds).map(feed => this.updateFeed(feed)))
-			.then(() => this.$dispatch('views.reloadCounts'));
+			.then(() => 
+			{
+				this.$dispatch('views.reloadCounts');
+
+				if (this.$store.current.view == 'today')
+					this.$dispatch('articles.load.view', {'view': 'today'});
+			});
 	},
 
 	updateFeed(feed, iSelectIndex = -1)

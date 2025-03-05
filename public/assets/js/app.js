@@ -20,7 +20,7 @@ document.addEventListener('alpine:init', () =>
 	Alpine.data('actions', () => ({
 
 		logout() { window.location = BASE_URL + LOGOUT_URI; },
-		update() { this.$dispatch('articles.fetch'); }
+		update() { this.$dispatch('feeds.fetchAll'); }
 	}));
 
 	/**

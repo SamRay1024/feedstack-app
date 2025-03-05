@@ -102,15 +102,17 @@ export let articles = {
 
 			this.articles[iIndex].attributes.is_read = bIsRead;
 			this.articles[iIndex].attributes.is_new = false;
-
+			
+			let iDiff = (bIsRead ? -1 : 1);
+			
 			this.$dispatch('feeds.updateCount', {
 				'feed_id': this.articles[iIndex].attributes.feed_id,
 				'counter_name': 'count_is_unread',
-				'diff': (bIsRead ? -1 : 1)
+				'diff': iDiff
 			});
 
 			if (this.$store.current.view != '')
-				this.$store.counts[this.$store.current.view]--;
+				this.$store.counts[this.$store.current.view] += iDiff;
 			else
 				this.$dispatch('views.reloadCounts');
 		});
@@ -176,11 +178,14 @@ export let articles = {
 	{
 		if (!this.articles[iIndex].attributes.is_read)
 		{
-			this.$dispatch('feeds.updateCount', {
-				'feed_id': this.articles[iIndex].attributes.feed_id,
-				'counter_name': 'count_is_unread',
-				'diff': -1
-			});
+			if (this.$store.current.view == 'today')
+			{
+				this.$dispatch('feeds.updateCount', {
+					'feed_id': this.articles[iIndex].attributes.feed_id,
+					'counter_name': 'count_is_unread',
+					'diff': -1
+				});
+			}
 
 			if (['today', 'later'].includes(this.$store.current.view))
 				this.$store.counts[this.$store.current.view]--;
