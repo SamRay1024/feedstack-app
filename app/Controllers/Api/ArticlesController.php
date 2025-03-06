@@ -69,6 +69,11 @@ class ArticlesController extends RestController
 			$aWhere['archive'] = 'is_archive = 0';
 		}
 
+		if ($this->hasParam('trash'))
+		{
+			$aWhere = ['deleted_at IS NOT NULL'];
+		}
+
 		$articles = $this->articles->findRows('*', $aWhere, 'pub_date DESC');
 
 		while ($article = $articles->fetch())

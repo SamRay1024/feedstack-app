@@ -24,6 +24,10 @@
 			:class="$store.current.view == 'archives' && 'current'">
 			<i class="ti ti-archive"></i> <?= __('Archives') ?>
 		</li>
+		<li class="" @click="select('trash')"
+			:class="$store.current.view == 'trash' && 'current'">
+			<i class="ti ti-trash"></i> <?= __('Trash') ?>
+		</li>
 	</ul>
 
 	<div class="mtm" x-data="feeds">
