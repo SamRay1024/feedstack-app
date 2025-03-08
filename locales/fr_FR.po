@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: FeedStack\n"
-"POT-Creation-Date: 2024-05-24 19:34+0200\n"
-"PO-Revision-Date: 2024-05-24 19:36+0200\n"
+"POT-Creation-Date: 2025-03-08 15:33+0100\n"
+"PO-Revision-Date: 2025-03-08 15:35+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -17,217 +17,221 @@ msgstr ""
 "X-Poedit-SearchPath-0: app\n"
 "X-Poedit-SearchPath-1: templates\n"
 
-#: app/Controllers/Api/FetchController.php:41
+#: app/Controllers/Api/FetchController.php:46
 msgid "Unreachable feed."
 msgstr "Flux injoignable."
 
-#: app/Controllers/AuthController.php:137
-msgid "Verification failed : please renew your registration."
-msgstr "Vérification échouée : veuillez renouveler votre inscription."
-
-#: app/Controllers/AuthController.php:142
-msgid "Your account has been verified. You can now log in !"
-msgstr "Votre compte a été vérifié. Vous pouvez désormais vous connecter !"
-
-#: app/Controllers/AuthController.php:213
-msgid "Password renewal failed : user not found."
-msgstr "Echec du renouvellement de mot de passe : utilisateur introuvable."
-
-#: app/Controllers/AuthController.php:226
-msgid "Password renewal failed : please restart the procedure."
-msgstr ""
-"Echec du renouvellement du mot de passe : veuillez relancer la procédure."
-
-#: app/Controllers/AuthController.php:231
-msgid "Your password has been updated. You should log in again."
-msgstr ""
-"Votre mot de passe a été mis à jour. Vous devriez pouvoir vous connecter à "
-"nouveau."
-
-#: templates/app.html.php:36
-msgid "Edit feed"
-msgstr "Modifier le flux"
-
-#: templates/app.html.php:38
-msgid "Delete feed"
-msgstr "Supprimer le flux"
-
-#: templates/app.html.php:49
-msgid "Edit a feed"
-msgstr "Modifier un flux"
-
-#: templates/app.html.php:49
-msgid "Add a feed"
-msgstr "Ajouter un flux"
-
-#: templates/app.html.php:54
-msgid "Feed URL:"
-msgstr "URL du flux :"
-
-#: templates/app.html.php:63
-msgid "Title:"
-msgstr "Titre :"
-
-#: templates/app.html.php:78 templates/app.html.php:149
+#: templates/component.confirm.html.php:9 templates/section.feeds.html.php:103
 msgid "Cancel"
 msgstr "Annuler"
 
-#: templates/app.html.php:82
-msgid "Check"
-msgstr "Vérifier"
-
-#: templates/app.html.php:87 templates/app.html.php:150
+#: templates/component.confirm.html.php:10
+#: templates/section.article.html.php:14 templates/section.article.html.php:19
+#: templates/section.articles.html.php:38
+#: templates/section.articles.html.php:43 templates/section.feeds.html.php:109
 msgid "Confirm"
 msgstr "Valider"
 
-#: templates/app.html.php:87
-msgid "Add"
-msgstr "Ajouter"
+#: templates/section.article.html.php:5
+msgid "Show previous article"
+msgstr "Afficher l'article précédent"
 
-#: templates/app.html.php:96
+#: templates/section.article.html.php:7
+msgid "Show next article"
+msgstr "Afficher l'article suivant"
+
+#: templates/section.article.html.php:15 templates/section.articles.html.php:39
+msgid "Archive article"
+msgstr "Archiver l'article"
+
+#: templates/section.article.html.php:20 templates/section.articles.html.php:44
+msgid "Delete article"
+msgstr "Supprimer l'article"
+
+#: templates/section.articles.html.php:3
 msgid "Select a feed"
 msgstr "Sélectionnez un flux"
 
-#: templates/app.html.php:97
+#: templates/section.articles.html.php:6
 msgid "No article at this time."
 msgstr "Aucun article pour l'instant."
 
-#: templates/auth.html.php:48
-msgid "User:"
-msgstr "Utilisateur :"
+#: templates/section.feeds.html.php:5
+msgid "Logout"
+msgstr "Se déconnecter"
 
-#: templates/auth.html.php:55 templates/auth.html.php:121
-#: templates/auth.html.php:181
-msgid "Password:"
-msgstr "Mot de passe :"
+#: templates/section.feeds.html.php:6
+msgid "Settings"
+msgstr "Paramètres"
 
-#: templates/auth.html.php:62
-msgid "Connect"
-msgstr "Se connecter"
+#: templates/section.feeds.html.php:7
+msgid "Update"
+msgstr "Mettre à jour"
 
-#: templates/auth.html.php:65
-msgid "Register"
-msgstr "Créer un compte"
+#: templates/section.feeds.html.php:14
+msgid "Today"
+msgstr "Aujourd'hui"
 
-#: templates/auth.html.php:65
-msgid "Forgot password ?"
-msgstr "Mot de passe oublié ?"
+#: templates/section.feeds.html.php:23
+msgid "Read later"
+msgstr "À lire plus tard"
 
-#: templates/auth.html.php:74
-msgid "Register your email address"
-msgstr "Enregistrez votre adresse de courriel"
+#: templates/section.feeds.html.php:32
+msgid "Archives"
+msgstr "Archives"
 
-#: templates/auth.html.php:77 templates/auth.html.php:146
-msgid "Email address:"
-msgstr "Adresse de courriel :"
+#: templates/section.feeds.html.php:37
+msgid "Trash"
+msgstr "Corbeille"
 
-#: templates/auth.html.php:83
-msgid "A validation email with a link will be sent to the given address."
-msgstr ""
-"Un courriel contenant un lien de validation sera envoyé à l'adresse indiquée."
+#: templates/section.feeds.html.php:40
+msgid "Empty trash"
+msgstr "Vider la corbeille"
 
-#: templates/auth.html.php:84
-msgid "Please click on the link to continue the registering process."
-msgstr ""
-"Veuillez cliquer sur le lien afin de poursuivre le processus d'ouverture de "
-"compte."
+#: templates/section.feeds.html.php:48
+msgid "Feeds"
+msgstr "Flux"
 
-#: templates/auth.html.php:87 templates/auth.html.php:156
-msgid "Send"
-msgstr "Envoyer"
+#: templates/section.feeds.html.php:51 templates/section.feeds.html.php:82
+msgid "Add a feed"
+msgstr "Ajouter un flux"
 
-#: templates/auth.html.php:91 templates/auth.html.php:160
-#: templates/auth.html.php:199
-msgid "« Go back to login"
-msgstr "« Retourner à la connexion"
+#: templates/section.feeds.html.php:66
+msgid "Updating..."
+msgstr "Mise à jour..."
 
-#: templates/auth.html.php:100
-msgid "Thanks for your interest !"
-msgstr "Merci pour votre intérêt !"
+#: templates/section.feeds.html.php:71
+msgid "Edit feed"
+msgstr "Modifier le flux"
 
-#: templates/auth.html.php:101
-msgid ""
-"A validation email has been sent. Check your mail box for our confirmation "
-"email."
-msgstr ""
-"Un courriel de validation a été envoyé. Vérifiez votre boîte de réception."
+#: templates/section.feeds.html.php:72
+msgid "Delete feed"
+msgstr "Supprimer le flux"
 
-#: templates/auth.html.php:102
-msgid "You can now close this page. See you very soon !"
-msgstr "Vous pouvez désormais fermer cette page. À tout de suite !"
+#: templates/section.feeds.html.php:82
+msgid "Edit a feed"
+msgstr "Modifier un flux"
 
-#: templates/auth.html.php:109
-msgid "You're almost done !"
-msgstr "Vous y êtes presque !"
+#: templates/section.feeds.html.php:87
+msgid "Feed URL:"
+msgstr "URL du flux :"
 
-#: templates/auth.html.php:114
-msgid "Your name:"
-msgstr "Votre nom :"
+#: templates/section.feeds.html.php:93
+msgid "Title:"
+msgstr "Titre :"
 
-#: templates/auth.html.php:128 templates/auth.html.php:188
-msgid "Password verification:"
-msgstr "Vérification du mot de passe :"
+#: templates/section.feeds.html.php:106
+msgid "Check"
+msgstr "Vérifier"
 
-#: templates/auth.html.php:135
-msgid "Create my account"
-msgstr "Créer mon compte"
+#: templates/section.feeds.html.php:109
+msgid "Add"
+msgstr "Ajouter"
 
-#: templates/auth.html.php:143
-msgid "Don't remember your password ?"
-msgstr "Vous avez oublié votre mot de passe ?"
+#~ msgid "Verification failed : please renew your registration."
+#~ msgstr "Vérification échouée : veuillez renouveler votre inscription."
 
-#: templates/auth.html.php:152
-msgid "Please fill in with your account email address."
-msgstr "Merci de renseigner l'adresse de courriel de votre compte."
+#~ msgid "Your account has been verified. You can now log in !"
+#~ msgstr "Votre compte a été vérifié. Vous pouvez désormais vous connecter !"
 
-#: templates/auth.html.php:153
-msgid "You will receive an email with a link to renew your password."
-msgstr ""
-"Un lien pour accéder au renouvellement de votre mot de passe sera envoyé."
+#~ msgid "Password renewal failed : user not found."
+#~ msgstr "Echec du renouvellement de mot de passe : utilisateur introuvable."
 
-#: templates/auth.html.php:169
-msgid "Password renewal in progress"
-msgstr "Renouvellement de mot de passe en cours"
+#~ msgid "Password renewal failed : please restart the procedure."
+#~ msgstr "Echec du renouvellement du mot de passe : veuillez relancer la procédure."
 
-#: templates/auth.html.php:170
-msgid ""
-"An email has been sent with a link to access password renewal form. Check "
-"your mail box."
-msgstr ""
-"Un courriel contenant un lien pour accéder au formulaire de renouvellement "
-"de mot de passe a été envoyé. Vérifiez votre boite de réception."
+#~ msgid "Your password has been updated. You should log in again."
+#~ msgstr "Votre mot de passe a été mis à jour. Vous devriez pouvoir vous connecter à nouveau."
 
-#: templates/auth.html.php:171
-msgid "You can now close this page."
-msgstr "Vous pouvez désormais fermer cette page."
+#~ msgid "User:"
+#~ msgstr "Utilisateur :"
 
-#: templates/auth.html.php:178
-msgid "Renew your password"
-msgstr "Renouveler votre mot de passe"
+#~ msgid "Password:"
+#~ msgstr "Mot de passe :"
 
-#: templates/auth.html.php:195
-msgid "Update password"
-msgstr "Mettre à jour le mot passe"
+#~ msgid "Connect"
+#~ msgstr "Se connecter"
+
+#~ msgid "Register"
+#~ msgstr "Créer un compte"
+
+#~ msgid "Forgot password ?"
+#~ msgstr "Mot de passe oublié ?"
+
+#~ msgid "Register your email address"
+#~ msgstr "Enregistrez votre adresse de courriel"
+
+#~ msgid "Email address:"
+#~ msgstr "Adresse de courriel :"
+
+#~ msgid "A validation email with a link will be sent to the given address."
+#~ msgstr "Un courriel contenant un lien de validation sera envoyé à l'adresse indiquée."
+
+#~ msgid "Please click on the link to continue the registering process."
+#~ msgstr "Veuillez cliquer sur le lien afin de poursuivre le processus d'ouverture de compte."
+
+#~ msgid "Send"
+#~ msgstr "Envoyer"
+
+#~ msgid "« Go back to login"
+#~ msgstr "« Retourner à la connexion"
+
+#~ msgid "Thanks for your interest !"
+#~ msgstr "Merci pour votre intérêt !"
+
+#~ msgid "A validation email has been sent. Check your mail box for our confirmation email."
+#~ msgstr "Un courriel de validation a été envoyé. Vérifiez votre boîte de réception."
+
+#~ msgid "You can now close this page. See you very soon !"
+#~ msgstr "Vous pouvez désormais fermer cette page. À tout de suite !"
+
+#~ msgid "You're almost done !"
+#~ msgstr "Vous y êtes presque !"
+
+#~ msgid "Your name:"
+#~ msgstr "Votre nom :"
+
+#~ msgid "Password verification:"
+#~ msgstr "Vérification du mot de passe :"
+
+#~ msgid "Create my account"
+#~ msgstr "Créer mon compte"
+
+#~ msgid "Don't remember your password ?"
+#~ msgstr "Vous avez oublié votre mot de passe ?"
+
+#~ msgid "Please fill in with your account email address."
+#~ msgstr "Merci de renseigner l'adresse de courriel de votre compte."
+
+#~ msgid "You will receive an email with a link to renew your password."
+#~ msgstr "Un lien pour accéder au renouvellement de votre mot de passe sera envoyé."
+
+#~ msgid "Password renewal in progress"
+#~ msgstr "Renouvellement de mot de passe en cours"
+
+#~ msgid "An email has been sent with a link to access password renewal form. Check your mail box."
+#~ msgstr "Un courriel contenant un lien pour accéder au formulaire de renouvellement de mot de passe a été envoyé. Vérifiez votre boite de réception."
+
+#~ msgid "You can now close this page."
+#~ msgstr "Vous pouvez désormais fermer cette page."
+
+#~ msgid "Renew your password"
+#~ msgstr "Renouveler votre mot de passe"
+
+#~ msgid "Update password"
+#~ msgstr "Mettre à jour le mot passe"
 
 #~ msgid "Confirm your registration"
 #~ msgstr "Confirmez votre inscription"
 
 #~ msgid "Verify your email to finalize your account creation"
-#~ msgstr ""
-#~ "Vérifiez votre adresse de courriel pour finaliser la création de votre "
-#~ "compte"
+#~ msgstr "Vérifiez votre adresse de courriel pour finaliser la création de votre compte"
 
 #~ msgid "To finalize your account creation, please click on the button below."
-#~ msgstr ""
-#~ "Pour finaliser la création de votre compte, veuillez cliquer sur le "
-#~ "bouton ci-dessous."
+#~ msgstr "Pour finaliser la création de votre compte, veuillez cliquer sur le bouton ci-dessous."
 
-#~ msgid ""
-#~ "If you haven't ask for an account registration, you can simply ignore and "
-#~ "delete this message."
-#~ msgstr ""
-#~ "Si vous n'êtes pas à l'origine de cette demande d'inscription, vous "
-#~ "pouvez simplement ignorer et supprimer ce message."
+#~ msgid "If you haven't ask for an account registration, you can simply ignore and delete this message."
+#~ msgstr "Si vous n'êtes pas à l'origine de cette demande d'inscription, vous pouvez simplement ignorer et supprimer ce message."
 
 #~ msgid "Your password has been updated"
 #~ msgstr "Votre mot de passe a été mis à jour"
@@ -238,50 +242,32 @@ msgstr "Mettre à jour le mot passe"
 #~ msgid "The password of your user account has been updated."
 #~ msgstr "Le mot de passe de votre compte utilisateur a été mis à jour."
 
-#~ msgid ""
-#~ "If you did not initiate this request to renew your password, make sure :"
-#~ msgstr ""
-#~ "Si vous n'êtes pas à l'origine de cette demande de renouvellement de mot "
-#~ "de passe, assurez-vous :"
+#~ msgid "If you did not initiate this request to renew your password, make sure :"
+#~ msgstr "Si vous n'êtes pas à l'origine de cette demande de renouvellement de mot de passe, assurez-vous :"
 
 #~ msgid "To <strong>secure your boxmail</strong> by setting a new password,"
-#~ msgstr ""
-#~ "De <strong>sécuriser l'accès à votre boite mail</strong> en changeant son "
-#~ "mot de passe,"
+#~ msgstr "De <strong>sécuriser l'accès à votre boite mail</strong> en changeant son mot de passe,"
 
-#~ msgid ""
-#~ "To <strong>restart the password renewal procedure</strong> to set a new "
-#~ "password."
-#~ msgstr ""
-#~ "De <strong>relancer la procédure de mot de passe oublié</strong> pour "
-#~ "définir un nouveau mot de passe."
+#~ msgid "To <strong>restart the password renewal procedure</strong> to set a new password."
+#~ msgstr "De <strong>relancer la procédure de mot de passe oublié</strong> pour définir un nouveau mot de passe."
 
 #~ msgid "Password renewal confirmation"
 #~ msgstr "Confirmation de renouvellement de mot de passe"
 
 #~ msgid "This is the validation email to renew your password."
-#~ msgstr ""
-#~ "Ceci est le courriel de validation pour renouveler votre mot de passe."
+#~ msgstr "Ceci est le courriel de validation pour renouveler votre mot de passe."
 
 #~ msgid "To renew your password, please click on the button below."
-#~ msgstr ""
-#~ "Pour renouveler votre mot de passe, veuillez cliquer sur le bouton ci-"
-#~ "dessous."
+#~ msgstr "Pour renouveler votre mot de passe, veuillez cliquer sur le bouton ci-dessous."
 
-#~ msgid ""
-#~ "If you haven't ask for a password renewal, you can simply ignore and "
-#~ "delete this message."
-#~ msgstr ""
-#~ "Si vous n'avez pas demandé de réinitialisation de mot de passe, vous "
-#~ "pouvez simplement ignorer et supprimer ce message."
+#~ msgid "If you haven't ask for a password renewal, you can simply ignore and delete this message."
+#~ msgstr "Si vous n'avez pas demandé de réinitialisation de mot de passe, vous pouvez simplement ignorer et supprimer ce message."
 
 #~ msgid "Renew my password"
 #~ msgstr "Renouveler mon mot de passe"
 
 #~ msgid "Access denied, please check your credentials or contact support."
-#~ msgstr ""
-#~ "Accès refusé, veuillez vérifier vos informations d'identification ou "
-#~ "contacter le support."
+#~ msgstr "Accès refusé, veuillez vérifier vos informations d'identification ou contacter le support."
 
 #~ msgid "You have to provide an email address to register."
 #~ msgstr "Vous devez renseigner une adresse de courriel pour vous inscrire."
@@ -299,9 +285,7 @@ msgstr "Mettre à jour le mot passe"
 #~ msgstr "Merci de définir votre mot de passe."
 
 #~ msgid "You have to provide a valid email address to renew your password."
-#~ msgstr ""
-#~ "Vous devez renseigner une adresse de courriel valide pour renouveler "
-#~ "votre mot de passe."
+#~ msgstr "Vous devez renseigner une adresse de courriel valide pour renouveler votre mot de passe."
 
 #~ msgid "Please fill in your new password."
 #~ msgstr "Veuillez saisir votre nouveau mot de passe."
@@ -316,8 +300,7 @@ msgstr "Mettre à jour le mot passe"
 #~ msgstr "Formulaire invalide, veuillez recommencer."
 
 #~ msgid "This is an automated email sent from <strong>FeedStack</strong>."
-#~ msgstr ""
-#~ "Ceci est un mail automatique envoyé depuis <strong>FeedStack</strong>."
+#~ msgstr "Ceci est un mail automatique envoyé depuis <strong>FeedStack</strong>."
 
 #~ msgid "Please click on the button to create your account."
 #~ msgstr "Veuillez cliquer sur le bouton pour créer votre compte."
