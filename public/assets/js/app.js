@@ -11,7 +11,7 @@ document.addEventListener('alpine:init', () =>
 	 * - view among 'today, later, archives',
 	 * - feed id
 	 */
-	Alpine.store('current', {'view': '', 'feed': 0});
+	Alpine.store('current', {'view': '', 'feed': 0, 'updating': ''});
 	Alpine.store('counts', {'today': 0, 'later': 0});
 
 	/**

@@ -60,6 +60,7 @@ export let articles = {
 		this.iFeedId = sView;
 
 		this.$store.current.view = sView;
+		this.$store.current.updating = sView;
 		this.$store.current.feed = 0;
 		
 		utils._fetch('GET', 'articles/?'+ sView).then(response =>
@@ -68,6 +69,8 @@ export let articles = {
 			{
 				this.articles = response.data;
 			}
+
+			this.$store.current.updating = '';
 		});
 	},
 
@@ -104,7 +107,7 @@ export let articles = {
 			this.articles[iIndex].attributes.is_new = false;
 			
 			let iDiff = (bIsRead ? -1 : 1);
-			
+
 			this.$dispatch('feeds.updateCount', {
 				'feed_id': this.articles[iIndex].attributes.feed_id,
 				'counter_name': 'count_is_unread',

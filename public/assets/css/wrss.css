@@ -261,3 +261,5 @@ i.ti-pin-filled {
 	border-radius: 20px;
 	color: white;
 }
+
+[x-cloak] { display: none !important; }
