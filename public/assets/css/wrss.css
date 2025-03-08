@@ -51,7 +51,7 @@ html {
 	list-style-type: none;
 }
 
-#views i {
+#views li > i {
 	margin-right: 5px;
 	color: var(--color-gray);
 }
@@ -153,6 +153,7 @@ i.ti {
 }
 
 .ti-trash,
+.ti-trash-off,
 .ti-x {
 	color: #991B1B;
 }

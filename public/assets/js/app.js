@@ -1,3 +1,4 @@
+import * as utils from './utils.js';
 import {views} from './components/views.js';
 import {feeds} from './components/feeds.js';
 import {articles} from './components/articles.js';
@@ -11,8 +12,20 @@ document.addEventListener('alpine:init', () =>
 	 * - view among 'today, later, archives',
 	 * - feed id
 	 */
-	Alpine.store('current', {'view': '', 'feed': 0, 'updating': ''});
+	Alpine.store('current', {'view': '', 'feed': 0});
 	Alpine.store('counts', {'today': 0, 'later': 0});
+	Alpine.store('sys', {
+		isFetching: 0,
+		fetch: function (method, uri, body)
+		{
+			this.isFetching++;
+			return utils._fetch(method, uri, body).then((response) =>
+			{
+				this.isFetching--;
+				return response;
+			});
+		}
+	});
 
 	/**
 	 * Main actions.

@@ -13,7 +13,7 @@ export let views = {
 
 	reloadCounts()
 	{
-		utils._fetch('GET', 'globals/counts').then(response =>
+		this.$store.sys.fetch('GET', 'globals/counts').then(response =>
 		{
 			if (response.data)
 			{

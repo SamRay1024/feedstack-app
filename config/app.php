@@ -4,7 +4,7 @@ return [
 
 	/* ==== GLOBALS ========================================================= */
 
-	'name'				=> '<i class="ti ti-stack-3 ti-logo"></i> FeedStack',
+	'name'				=> 'FeedStack',
 	'production'		=> false,
 	'public_path'		=> ROOT_DIR .'/public',
 	'storage_path'		=> ROOT_DIR .'/storage',

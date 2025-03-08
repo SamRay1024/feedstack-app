@@ -1,5 +1,7 @@
 <section id="feeds" class="paxs">
-	<h1 class="pas bigger" x-data="actions"><?= $appname ?>
+	<h1 class="pas bigger" x-data="actions">
+		<i class="ti ti-logo"
+			:class="{'ti-stack-3': !$store.sys.isFetching, 'ti-loader-2 spin': $store.sys.isFetching}"></i> <?= $appname ?>
 		<i class="ti ti-logout right" @click="logout" title="<?= __('Logout') ?>"></i>
 		<i class="ti ti-settings right" title="<?= __('Settings') ?>"></i>
 		<i class="ti ti-cloud-download right" @click="update" title="<?= __('Update') ?>"></i>
@@ -8,13 +10,8 @@
 	<ul id="views" class="list pan" x-data="views">
 		<li class="strong" @click="select('today')"
 			:class="$store.current.view == 'today' && 'current'">
-			<i class="ti ti-inbox"></i> <?= __('Today') ?>
-
-			<span class="feed-updating meta"
-				x-cloak x-show="$store.current.updating == 'today'">
-				<i class="ti ti-loader-2" title="<?= __('Updating...') ?>"
-					:class="{'spin': $store.current.updating == 'today'}"></i>
-			</span>
+			<i class="ti ti-inbox"
+				:class="$store.current.updating == 'today' && 'spin'"></i> <?= __('Today') ?>
 
 			<span class="view-count meta"
 				x-show="$store.current.updating != 'today'"
@@ -25,12 +22,6 @@
 			:class="$store.current.view == 'later' && 'current'">
 			<i class="ti ti-pin"></i> <?= __('Read later') ?>
 
-			<span class="feed-updating meta"
-				x-cloak x-show="$store.current.updating == 'later'">
-				<i class="ti ti-loader-2" title="<?= __('Updating...') ?>"
-					:class="{'spin': $store.current.updating == 'later'}"></i>
-			</span>
-
 			<span class="view-count meta"
 				x-show="$store.current.updating != 'later'"
 				x-text="$store.counts.later > 0 ? $store.counts.later : ''"></span>
@@ -39,21 +30,15 @@
 		<li class="strong" @click="select('archives')"
 			:class="$store.current.view == 'archives' && 'current'">
 			<i class="ti ti-archive"></i> <?= __('Archives') ?>
-
-			<span class="feed-updating meta"
-				x-cloak x-show="$store.current.updating == 'archives'">
-				<i class="ti ti-loader-2" title="<?= __('Updating...') ?>"
-					:class="{'spin': $store.current.updating == 'archives'}"></i>
-			</span>
 		</li>
+
 		<li class="" @click="select('trash')"
 			:class="$store.current.view == 'trash' && 'current'">
 			<i class="ti ti-trash"></i> <?= __('Trash') ?>
 
-			<span class="feed-updating meta"
-				x-cloak x-show="$store.current.updating == 'trash'">
-				<i class="ti ti-loader-2" title="<?= __('Updating...') ?>"
-					:class="{'spin': $store.current.updating == 'trash'}"></i>
+			<span class="feed-actions hidden">
+				<span title="<?= __('Empty trash') ?>"
+					@click.stop="askDelete(feed.id, feed.attributes.title)"><i class="ti ti-trash-off"></i></span>
 			</span>
 		</li>
 	</ul>

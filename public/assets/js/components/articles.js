@@ -48,7 +48,7 @@ export let articles = {
 		this.$store.current.view = '';
 		this.$store.current.feed = iFeedId;
 		
-		utils._fetch('GET', 'articles/?feed='+ iFeedId).then(response =>
+		this.$store.sys.fetch('GET', 'articles/?feed='+ iFeedId).then(response =>
 		{
 			if (response.data)
 				this.articles = response.data;
@@ -60,17 +60,16 @@ export let articles = {
 		this.iFeedId = sView;
 
 		this.$store.current.view = sView;
-		this.$store.current.updating = sView;
 		this.$store.current.feed = 0;
 		
-		utils._fetch('GET', 'articles/?'+ sView).then(response =>
+		this.$store.sys.fetch('GET', 'articles/?'+ sView).then(response =>
 		{
 			if (response.data)
 			{
 				this.articles = response.data;
 			}
 
-			this.$store.current.updating = '';
+			return response;
 		});
 	},
 
@@ -97,7 +96,7 @@ export let articles = {
 
 	markAsRead(iIndex, bIsRead = true)
 	{
-		utils._fetch('PUT', 'articles/'+ this.articles[iIndex].id, JSON.stringify({is_read: bIsRead}))
+		this.$store.sys.fetch('PUT', 'articles/'+ this.articles[iIndex].id, JSON.stringify({is_read: bIsRead}))
 		.then((response) =>
 		{
 			if (response.status != 204)
@@ -125,7 +124,7 @@ export let articles = {
 	{
 		let bIsLater = !this.articles[iIndex].attributes.is_read_later;
 
-		utils._fetch('PUT', 'articles/' + this.articles[iIndex].id, JSON.stringify({is_read_later: bIsLater}))
+		this.$store.sys.fetch('PUT', 'articles/' + this.articles[iIndex].id, JSON.stringify({is_read_later: bIsLater}))
 		.then((response) =>
 		{
 			if (response.status != 204)
@@ -141,7 +140,7 @@ export let articles = {
 		if (!(iIndex in this.articles))
 			return;
 
-		utils._fetch('PUT', 'articles/'+ this.articles[iIndex].id, JSON.stringify({is_archive: bArchive}))
+		this.$store.sys.fetch('PUT', 'articles/'+ this.articles[iIndex].id, JSON.stringify({is_archive: bArchive}))
 		.then((response) =>
 		{
 			if (response.status != 204)
@@ -157,7 +156,7 @@ export let articles = {
 		if (!(iIndex in this.articles))
 			return;
 		
-		utils._fetch('DELETE', 'articles/'+ this.articles[iIndex].id)
+		this.$store.sys.fetch('DELETE', 'articles/'+ this.articles[iIndex].id)
 		.then((response) =>
 		{
 			if (response.status != 204)

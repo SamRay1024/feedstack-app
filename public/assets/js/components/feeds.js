@@ -32,7 +32,7 @@ export let feeds = {
 
 	loadFeeds()
 	{
-		utils._fetch('GET', 'feeds').then(response =>
+		this.$store.sys.fetch('GET', 'feeds').then((response) =>
 		{
 			if (response.data)
 			{
@@ -59,13 +59,15 @@ export let feeds = {
 	{
 		feed.bIsUpdating = true;
 
-		return utils._fetch('GET', 'fetch/'+ feed.id)
-			.then(response =>
+		return this.$store.sys.fetch('GET', 'fetch/'+ feed.id)
+			.then((response) =>
 			{
 				feed.bIsUpdating = false;
 
 				if (iSelectIndex >= 0)
 					this.select(feed.id, iSelectIndex);
+
+				return response;
 			});
 	},
 
@@ -90,7 +92,7 @@ export let feeds = {
 		if (this.model.url == '')
 			return;
 
-		utils._fetch('GET', 'check?url='+this.model.url)
+		this.$store.sys.fetch('GET', 'check?url='+this.model.url)
 		.then(response => 
 		{
 			if (response.error)
@@ -121,7 +123,7 @@ export let feeds = {
 		this.sFormFeedback = '';
 		this.bIsSending = true;
 
-		utils._fetch(
+		this.$store.sys.fetch(
 			(this.model.id ? "PUT" : "POST"),
 			'feeds' + (this.model.id ? '/' + this.model.id : ''),
 			JSON.stringify(this.model)
@@ -160,7 +162,7 @@ export let feeds = {
 
 	edit(id)
 	{
-		utils._fetch('GET', 'feeds/' + id).then(response =>
+		this.$store.sys.fetch('GET', 'feeds/' + id).then(response =>
 		{
 			this.model.id = id;
 			this.model.url = response.data.attributes.url;
@@ -181,7 +183,7 @@ export let feeds = {
 
 	delete(data)
 	{
-		utils._fetch('DELETE', 'feeds/'+ data.id).then(response =>
+		this.$store.sys.fetch('DELETE', 'feeds/'+ data.id).then(response =>
 		{
 			if (response.status >= 200)
 				this.loadFeeds();
