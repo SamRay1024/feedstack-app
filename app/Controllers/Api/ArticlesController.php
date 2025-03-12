@@ -5,6 +5,7 @@ namespace App\Controllers\Api;
 use App\Models\Articles;
 use wlib\Application\Controllers\AllowLoggedInUsersTrait;
 use wlib\Application\Controllers\RestController;
+use wlib\Http\Server\Response;
 
 class ArticlesController extends RestController
 {
@@ -26,7 +27,13 @@ class ArticlesController extends RestController
 
 	public function delete()
 	{
-		$this->articles->delete($this->getFeedIdOrFail());
+		if ($this->arg(0) == 'purge')
+		{
+			$this->articles->purgeDeleted();
+			$this->response->json(['data' => 'ok'], Response::HTTP_NO_CONTENT);
+		}
+		else
+			$this->articles->delete($this->getFeedIdOrFail());
 	}
 
 	public function put($id)

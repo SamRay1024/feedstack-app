@@ -175,6 +175,19 @@ class Articles extends Table
 			)
 			->run()->fetchColumn();
 	}
+	
+	/**
+	 * Purge deleted articles.
+	 *
+	 * @return void
+	 */
+	public function purgeDeleted()
+	{
+		return $this->oDb->query()
+			->delete(self::TABLE_NAME)
+			->where(self::COL_DELETED_AT_NAME.' IS NOT NULL')
+			->run();
+	}
 
 	/**
 	 * Make a query to count on current table.

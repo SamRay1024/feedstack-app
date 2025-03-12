@@ -107,6 +107,30 @@ document.addEventListener('alpine:init', () =>
 	}));
 
 	/**
+	 * Delete article with confirmation.
+	 */
+	Alpine.data('emptyTrash', () => ({
+		bConfirm: false,
+		
+		trigger:
+		{
+			['x-show']() { return !this.bConfirm; },
+			['@click.stop']() { this.bConfirm = true; }
+		},
+		
+		confirm: 
+		{
+			['x-show']() { return this.bConfirm; },
+			['@mouseleave']() { this.bConfirm = false; },
+			['@click.stop']()
+			{
+				this.$dispatch('views.emptyTrash');
+				this.bConfirm = false;
+			}
+		}
+	}));
+
+	/**
 	 * Confirm window.
 	 */
 	Alpine.data('confirm', () => ({

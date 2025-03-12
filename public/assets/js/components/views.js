@@ -9,6 +9,8 @@ export let views = {
 		{
 			this.reloadCounts();
 		});
+
+		window.addEventListener('views.emptyTrash', () => this.emptyTrash());
 	},
 
 	reloadCounts()
@@ -25,5 +27,11 @@ export let views = {
 	select(sView)
 	{
 		this.$dispatch('articles.load.view', {view: sView});
+	},
+
+	emptyTrash()
+	{
+		this.$store.sys.fetch('DELETE', 'articles/purge')
+			.then(() => this.$dispatch('articles.load.view', {view: 'trash'}));
 	}
 }

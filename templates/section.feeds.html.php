@@ -36,9 +36,9 @@
 			:class="$store.current.view == 'trash' && 'current'">
 			<i class="ti ti-trash"></i> <?= __('Trash') ?>
 
-			<span class="feed-actions hidden">
-				<span title="<?= __('Empty trash') ?>"
-					@click.stop="askDelete(feed.id, feed.attributes.title)"><i class="ti ti-trash-off"></i></span>
+			<span class="feed-actions hidden" x-data="emptyTrash()">
+				<i class="ti ti-check" title="<?= __('Confirm') ?>" x-bind="confirm"></i>
+				<i class="ti ti-trash-off" title="<?= __('Empty trash') ?>" x-bind="trigger"></i>
 			</span>
 		</li>
 	</ul>

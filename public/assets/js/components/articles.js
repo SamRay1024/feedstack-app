@@ -50,7 +50,7 @@ export let articles = {
 		
 		this.$store.sys.fetch('GET', 'articles/?feed='+ iFeedId).then(response =>
 		{
-			if (response.data)
+			if (response && response.data)
 				this.articles = response.data;
 		});
 	},
@@ -64,12 +64,10 @@ export let articles = {
 		
 		this.$store.sys.fetch('GET', 'articles/?'+ sView).then(response =>
 		{
-			if (response.data)
+			if (response && response.data)
 			{
 				this.articles = response.data;
 			}
-
-			return response;
 		});
 	},
 
