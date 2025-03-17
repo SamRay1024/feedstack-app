@@ -24,5 +24,10 @@ export let article = {
 	readLater()
 	{
 		this.$dispatch('articles.markForLater', this.iCurrentIndex);
+	},
+
+	restore()
+	{
+		this.$dispatch('articles.restore', this.iCurrentIndex);
 	}
 }

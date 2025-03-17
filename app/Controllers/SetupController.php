@@ -46,6 +46,7 @@ class SetupController extends Controller
 				created_at DATETIME,
 				updated_at DATETIME,
 				deleted_at DATETIME,
+				emptied_at DATETIME,
 				FOREIGN KEY (feed_id) REFERENCES feeds (id) ON DELETE CASCADE
 			);'
 		);

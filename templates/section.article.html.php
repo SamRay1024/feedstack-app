@@ -7,7 +7,8 @@
 				<i class="wbtn ti ti-chevron-down" title="<?= __('Show next article') ?>"
 					@click="next()"></i>
 
-				<span @click="readLater""><i class="wbtn ti"
+				<span @click="readLater"><i class="wbtn ti"
+					title="<?= __('Read later') ?>"
 					:class="{'ti-pin': !current.attributes.is_read_later, 'ti-pin-filled': current.attributes.is_read_later}"></i></span>
 
 				<span x-data="archiveArticle()" x-show="!current.attributes.is_archive">
@@ -20,9 +21,12 @@
 					<i class="wbtn ti ti-trash" title="<?= __('Delete article') ?>" x-bind="trigger"></i>
 				</span>
 
-				<span x-data="purgeArticle()" x-show="current.attributes.deleted_at">
+				<span @click="restore" x-show="current.attributes.deleted_at"><i class="wbtn ti ti-restore"
+					title="<?= __('Restore') ?>"></i></span>
+
+				<span x-data="emptyArticle()" x-show="current.attributes.deleted_at">
 					<i class="wbtn ti ti-check" title="<?= __('Confirm') ?>" x-bind="confirm"></i>
-					<i class="wbtn ti ti-trash-x" title="<?= __('Purge article') ?>" x-bind="trigger"></i>
+					<i class="wbtn ti ti-trash-x" title="<?= __('Remove from trash') ?>" x-bind="trigger"></i>
 				</span>
 			</div>
 			<header class="pam pts">

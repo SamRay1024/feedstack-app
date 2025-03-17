@@ -27,18 +27,21 @@ class ArticlesController extends RestController
 
 	public function delete()
 	{
-		if ($this->hasParam('purge'))
-			$this->articles->purgeDeleted((int) $this->arg(0));
+		if ($this->hasParam('empty'))
+			$this->articles->empty((int) $this->arg(0));
 		else
 			$this->articles->delete($this->getIdOrFail());
 	}
 
 	public function put($id)
 	{
-		$this->articles->save(
-			array_intersect_key($this->data(), array_flip(['is_read', 'is_archive', 'is_read_later'])),
-			(int) $id
-		);
+		if ($this->hasParam('restore'))
+			$this->articles->restore((int) $id);
+		else
+			$this->articles->save(
+				array_intersect_key($this->data(), array_flip(['is_read', 'is_archive', 'is_read_later'])),
+				(int) $id
+			);
 	}
 
 	private function getOne($id)
@@ -75,7 +78,7 @@ class ArticlesController extends RestController
 
 		if ($this->hasParam('trash'))
 		{
-			$aWhere = ['deleted_at IS NOT NULL'];
+			$aWhere = ['deleted_at IS NOT NULL', 'emptied_at IS NULL'];
 		}
 
 		$articles = $this->articles->findRows('*', $aWhere, 'pub_date DESC');

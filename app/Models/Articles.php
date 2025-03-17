@@ -13,6 +13,7 @@ class Articles extends Table
 	const COL_CREATED_AT_NAME = 'created_at';
 	const COL_UPDATED_AT_NAME = 'updated_at';
 	const COL_DELETED_AT_NAME = 'deleted_at';
+	const COL_EMPTIED_AT_NAME = 'emptied_at';
 
 	protected $aColumns = [
 		'feed_id'		=> \PDO::PARAM_INT,
@@ -178,22 +179,45 @@ class Articles extends Table
 	}
 	
 	/**
-	 * Purge deleted articles.
+	 * Empty deleted articles.
 	 *
-	 * @param integer $iArticleId Article ID to purge (0 for all).
+	 * @param integer $iArticleId Article ID to empty (0 for all).
 	 * @return void
 	 */	
-	public function purgeDeleted(int $iArticleId = 0)
+	public function empty(int $iArticleId = 0)
 	{
-		$purge = $this->oDb->query()->delete(self::TABLE_NAME);
+		$empty = $this->oDb->query()
+			->update(self::TABLE_NAME)
+			->set(self::COL_EMPTIED_AT_NAME, 'NOW()');
+
 		$sWhere = self::COL_DELETED_AT_NAME .' IS NOT NULL';
 		
 		if ($iArticleId != 0)
 		{
 			$sWhere .= ' AND '. self::COL_ID_NAME .' = :id';
-			$purge->setParameter('id', $iArticleId, PDO::PARAM_INT);
+			$empty->setParameter('id', $iArticleId, PDO::PARAM_INT);
 		}
 	
+		$empty->where($sWhere)->run();
+	}
+
+	/**
+	 * Delete articles previously emptied.
+	 * 
+	 * @param int $iArticleId Article ID or 0 for all.
+	 * @return void
+	 */
+	public function purge(int $iArticleId = 0)
+	{
+		$purge = $this->oDb->query()->delete(self::TABLE_NAME);
+		$sWhere = self::COL_EMPTIED_AT_NAME . ' IS NOT NULL';
+
+		if ($iArticleId != 0)
+		{
+			$sWhere .= ' AND '. self::COL_ID_NAME .' = :id';
+			$purge->setParameter('id', $iArticleId, PDO::PARAM_INT);
+		}
+
 		$purge->where($sWhere)->run();
 	}
 

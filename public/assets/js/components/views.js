@@ -31,7 +31,7 @@ export let views = {
 
 	emptyTrash()
 	{
-		this.$store.sys.fetch('DELETE', 'articles/purge')
+		this.$store.sys.fetch('DELETE', 'articles/?empty')
 			.then(() => this.$dispatch('articles.load.view', {view: 'trash'}));
 	}
 }

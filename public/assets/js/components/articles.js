@@ -24,7 +24,7 @@ export let articles = {
 			this.delete(event.detail >= 0 ? event.detail : this.iSelectedIndex);
 		});
 
-		window.addEventListener('articles.purge', (event) =>
+		window.addEventListener('articles.empty', (event) =>
 		{
 			this.delete((event.detail >= 0 ? event.detail : this.iSelectedIndex), true);
 		});
@@ -42,6 +42,11 @@ export let articles = {
 		window.addEventListener('articles.markForLater', (event) =>
 		{
 			this.markForLater(event.detail >= 0 ? event.detail : this.iSelectedIndex);
+		});
+
+		window.addEventListener('articles.restore', (event) =>
+		{
+			this.restore(event.detail >= 0 ? event.detail : this.iSelectedIndex);
 		});
 	},
 
@@ -127,7 +132,7 @@ export let articles = {
 	{
 		let bIsLater = !this.articles[iIndex].attributes.is_read_later;
 
-		this.$store.sys.fetch('PUT', 'articles/' + this.articles[iIndex].id, JSON.stringify({is_read_later: bIsLater}))
+		this.$store.sys.fetch('PUT', 'articles/'+ this.articles[iIndex].id, JSON.stringify({is_read_later: bIsLater}))
 		.then((response) =>
 		{
 			if (response.status != 204)
@@ -149,25 +154,38 @@ export let articles = {
 			if (response.status != 204)
 				return;
 				
-			this.updateArticleCounters(iIndex);
+			this.updateArticleCounters(iIndex, -1);
 			this.removeArticle(iIndex);
 		});	
 	},
 
-	delete(iIndex, bPurge = false)
+	delete(iIndex, bEmpty = false)
 	{
 		if (!(iIndex in this.articles))
 			return;
 		
-		this.$store.sys.fetch('DELETE', 'articles/'+ this.articles[iIndex].id +(bPurge ? '?purge' : ''))
+		this.$store.sys.fetch('DELETE', 'articles/'+ this.articles[iIndex].id +(bEmpty ? '?empty' : ''))
 		.then((response) =>
 		{
 			if (!response.ok)
 				return;
 
-			this.updateArticleCounters(iIndex);
+			this.updateArticleCounters(iIndex, -1);
 			this.removeArticle(iIndex);
 		});
+	},
+
+	restore(iIndex)
+	{
+		this.$store.sys.fetch('PUT', 'articles/'+ this.articles[iIndex].id +'?restore')
+		.then(response =>
+		{
+			if (!response.ok)
+				return;
+
+			this.updateArticleCounters(iIndex, 1);
+			this.removeArticle();
+		})
 	},
 
 	removeArticle(iIndex)
@@ -179,7 +197,7 @@ export let articles = {
 			this.select(iIndex);
 	},
 
-	updateArticleCounters(iIndex)
+	updateArticleCounters(iIndex, iDiff)
 	{
 		if (!this.articles[iIndex].attributes.is_read)
 		{
@@ -188,12 +206,12 @@ export let articles = {
 				this.$dispatch('feeds.updateCount', {
 					'feed_id': this.articles[iIndex].attributes.feed_id,
 					'counter_name': 'count_is_unread',
-					'diff': -1
+					'diff': iDiff
 				});
 			}
 
 			if (['today', 'later'].includes(this.$store.current.view))
-				this.$store.counts[this.$store.current.view]--;
+				this.$store.counts[this.$store.current.view] += iDiff;
 			else
 				this.$dispatch('views.reloadCounts');
 		}
@@ -201,7 +219,7 @@ export let articles = {
 		this.$dispatch('feeds.updateCount', {
 			'feed_id': this.articles[iIndex].attributes.feed_id,
 			'counter_name': 'count_articles',
-			'diff': -1	
+			'diff': iDiff	
 		});
 	},
 

@@ -82,9 +82,9 @@ document.addEventListener('alpine:init', () =>
 	}));
 
 	/**
-	 * Purge article with confirmation.
+	 * Empty article with confirmation.
 	 */
-	Alpine.data('purgeArticle', (iArticleIndex = -1) => ({
+	Alpine.data('emptyArticle', (iArticleIndex = -1) => ({
 		iIndex: iArticleIndex,
 		bConfirm: false,
 
@@ -99,7 +99,7 @@ document.addEventListener('alpine:init', () =>
 			['x-show']() { return this.bConfirm; },
 			['@mouseleave']() { this.bConfirm = false; },
 			['@click.stop']() {
-				this.$dispatch('articles.purge', this.iIndex);
+				this.$dispatch('articles.empty', this.iIndex);
 				this.bConfirm = false;
 			}
 		}
