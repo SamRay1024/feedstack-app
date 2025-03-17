@@ -4,6 +4,7 @@
 	--color-gray: #9ca3af;
 	--color-meta: #666;
 	--color-green: #0ca678;
+	--color-red: #991B1B;
 	--bg-color-btn-hover: #e4e4e4;
 	--bg-color-new-state: hsl(45, 100%, 60%);
 	--bd-color-new-state: hsl(45, 100%, 50%);
@@ -154,8 +155,8 @@ i.ti {
 
 .ti-trash,
 .ti-trash-off,
-.ti-x {
-	color: #991B1B;
+.ti-trash-x {
+	color: var(--color-red);
 }
 .ti-check {
 	color: var(--color-green);

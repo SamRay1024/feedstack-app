@@ -15,9 +15,14 @@
 					<i class="wbtn ti ti-archive" title="<?= __('Archive article') ?>" x-bind="trigger"></i>
 				</span>
 
-				<span x-data="deleteArticle()">
+				<span x-data="deleteArticle()" x-show="!current.attributes.deleted_at">
 					<i class="wbtn ti ti-check" title="<?= __('Confirm') ?>" x-bind="confirm"></i>
 					<i class="wbtn ti ti-trash" title="<?= __('Delete article') ?>" x-bind="trigger"></i>
+				</span>
+
+				<span x-data="purgeArticle()" x-show="current.attributes.deleted_at">
+					<i class="wbtn ti ti-check" title="<?= __('Confirm') ?>" x-bind="confirm"></i>
+					<i class="wbtn ti ti-trash-x" title="<?= __('Purge article') ?>" x-bind="trigger"></i>
 				</span>
 			</div>
 			<header class="pam pts">

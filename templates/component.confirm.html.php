@@ -1,4 +1,4 @@
-<div x-data="confirm" x-show="open">
+<div x-data="confirm" x-show="open" x-cloak>
 	<div class="modal">
 		<div class="modal-box w30">
 			<div class="modal-header h3" x-text="title"></div>

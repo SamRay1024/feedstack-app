@@ -82,6 +82,30 @@ document.addEventListener('alpine:init', () =>
 	}));
 
 	/**
+	 * Purge article with confirmation.
+	 */
+	Alpine.data('purgeArticle', (iArticleIndex = -1) => ({
+		iIndex: iArticleIndex,
+		bConfirm: false,
+
+		trigger:
+		{
+			['x-show']() { return !this.bConfirm; },
+			['@click.stop']() { this.bConfirm = true; }
+		},
+
+		confirm:
+		{
+			['x-show']() { return this.bConfirm; },
+			['@mouseleave']() { this.bConfirm = false; },
+			['@click.stop']() {
+				this.$dispatch('articles.purge', this.iIndex);
+				this.bConfirm = false;
+			}
+		}
+	}));
+
+	/**
 	 * Archive article with confirmation.
 	 */
 	Alpine.data('archiveArticle', (iArticleIndex = -1) => ({

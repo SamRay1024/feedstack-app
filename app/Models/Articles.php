@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use PDO;
 use RuntimeException;
 use wlib\Db\Table;
 
@@ -179,14 +180,21 @@ class Articles extends Table
 	/**
 	 * Purge deleted articles.
 	 *
+	 * @param integer $iArticleId Article ID to purge (0 for all).
 	 * @return void
-	 */
-	public function purgeDeleted()
+	 */	
+	public function purgeDeleted(int $iArticleId = 0)
 	{
-		return $this->oDb->query()
-			->delete(self::TABLE_NAME)
-			->where(self::COL_DELETED_AT_NAME.' IS NOT NULL')
-			->run();
+		$purge = $this->oDb->query()->delete(self::TABLE_NAME);
+		$sWhere = self::COL_DELETED_AT_NAME .' IS NOT NULL';
+		
+		if ($iArticleId != 0)
+		{
+			$sWhere .= ' AND '. self::COL_ID_NAME .' = :id';
+			$purge->setParameter('id', $iArticleId, PDO::PARAM_INT);
+		}
+	
+		$purge->where($sWhere)->run();
 	}
 
 	/**

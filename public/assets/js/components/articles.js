@@ -24,6 +24,11 @@ export let articles = {
 			this.delete(event.detail >= 0 ? event.detail : this.iSelectedIndex);
 		});
 
+		window.addEventListener('articles.purge', (event) =>
+		{
+			this.delete((event.detail >= 0 ? event.detail : this.iSelectedIndex), true);
+		});
+
 		window.addEventListener('articles.archive', (event) =>
 		{
 			this.archive(event.detail >= 0 ? event.detail : this.iSelectedIndex);
@@ -149,15 +154,15 @@ export let articles = {
 		});	
 	},
 
-	delete(iIndex)
+	delete(iIndex, bPurge = false)
 	{
 		if (!(iIndex in this.articles))
 			return;
 		
-		this.$store.sys.fetch('DELETE', 'articles/'+ this.articles[iIndex].id)
+		this.$store.sys.fetch('DELETE', 'articles/'+ this.articles[iIndex].id +(bPurge ? '?purge' : ''))
 		.then((response) =>
 		{
-			if (response.status != 204)
+			if (!response.ok)
 				return;
 
 			this.updateArticleCounters(iIndex);
