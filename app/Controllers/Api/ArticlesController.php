@@ -27,13 +27,10 @@ class ArticlesController extends RestController
 
 	public function delete()
 	{
-		if ($this->arg(0) == 'purge')
-		{
-			$this->articles->purgeDeleted();
-			$this->response->json(['data' => 'ok'], Response::HTTP_NO_CONTENT);
-		}
+		if ($this->hasParam('purge'))
+			$this->articles->purgeDeleted((int) $this->arg(0));
 		else
-			$this->articles->delete($this->getFeedIdOrFail());
+			$this->articles->delete($this->getIdOrFail());
 	}
 
 	public function put($id)
@@ -112,17 +109,17 @@ class ArticlesController extends RestController
 		];
 	}	
 
-	private function getFeedIdOrFail()
+	private function getIdOrFail()
 	{
 		$id = (int) $this->arg(0);
 
 		$id or $this->haltBadRequest(sprintf(
-			'Feed ID not provided in URI : "%s{int:id}/".',
+			'Article ID not provided in URI : "%s{int:id}/".',
 			$this->request->getRequestUri()
 		));
 
 		$this->articles->exists(Articles::COL_ID_NAME, $id) or $this->haltNotFound(
-			'Feed provided not found.'
+			'Article provided not found.'
 		);
 
 		return $id;
