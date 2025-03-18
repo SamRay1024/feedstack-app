@@ -39,9 +39,18 @@
 						<i class="ti ti-archive" title="<?= __('Archive article') ?>" x-bind="trigger"></i>
 					</span>
 
-					<span x-data="deleteArticle(artIndex)">
+					<span x-data="deleteArticle(artIndex)" x-show="!art.attributes.deleted_at">
 						<i class="ti ti-check" title="<?= __('Confirm') ?>" x-bind="confirm"></i>
 						<i class="ti ti-trash" title="<?= __('Delete article') ?>" x-bind="trigger"></i>
+					</span>
+
+					<span @click="restore(artIndex)" x-show="art.attributes.deleted_at"><i
+						class="ti ti-restore"
+						title="<?= __('Restore') ?>"></i></span>
+
+					<span x-data="emptyArticle(artIndex)" x-show="art.attributes.deleted_at">
+						<i class="ti ti-check" title="<?= __('Confirm') ?>" x-bind="confirm"></i>
+						<i class="ti ti-trash-x" title="<?= __('Remove from trash') ?>" x-bind="trigger"></i>
 					</span>
 				</span>
 			</li>
