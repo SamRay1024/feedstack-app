@@ -91,7 +91,7 @@ class Articles extends Table
 			->setParameter('id', $iFeedId)
 			->run();
 	}
-	
+
 	/**
 	 * Count unread articles for the given feed.
 	 *
@@ -202,6 +202,25 @@ class Articles extends Table
 	}
 
 	/**
+	 * Mark emptied articles of a given feed as purgeable.
+	 * 
+	 * This status is provided to prevent purge to delete articles that still exists
+	 * in feeds and avoid to download again already deleted articles.
+	 *
+	 * @param integer $iFeedId Feed ID.
+	 * @return void
+	 */
+	public function setPurgeableFeed(int $iFeedId)
+	{
+		$this->oDb->query()
+			->update(self::TABLE_NAME)
+			->set('is_purgeable', 1, \PDO::PARAM_INT)
+			->where('feed_id = :id AND ' . self::COL_EMPTIED_AT_NAME .' IS NOT NULL')
+			->setParameter('id', $iFeedId)
+			->run();
+	}
+
+	/**
 	 * Delete articles previously emptied.
 	 * 
 	 * @param int $iArticleId Article ID or 0 for all.
@@ -210,7 +229,8 @@ class Articles extends Table
 	public function purge(int $iArticleId = 0)
 	{
 		$purge = $this->oDb->query()->delete(self::TABLE_NAME);
-		$sWhere = self::COL_EMPTIED_AT_NAME . ' IS NOT NULL';
+		$sWhere = self::COL_EMPTIED_AT_NAME .' IS NOT NULL'
+			.' AND is_purgeable = 1';
 
 		if ($iArticleId != 0)
 		{
@@ -219,6 +239,23 @@ class Articles extends Table
 		}
 
 		$purge->where($sWhere)->run();
+	}
+		
+	/**
+	 * Purge articles of the given feed.
+	 *
+	 * @param int $iFeedId Feed ID.
+	 * @return int
+	 */
+	public function purgeFeed(int $iFeedId): int
+	{
+		return $this->oDb->query()->delete(self::TABLE_NAME)
+			->where(
+				'feed_id = :id AND '. self::COL_EMPTIED_AT_NAME .' IS NOT NULL'
+				.' AND is_purgeable = 1'
+			)
+			->setParameter('id', $iFeedId, PDO::PARAM_INT)
+			->run();
 	}
 
 	/**

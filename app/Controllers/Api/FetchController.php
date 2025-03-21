@@ -49,24 +49,28 @@ class FetchController extends RestController
 		}
 
 		$this->articles->resetIsNew($id);
+		$this->articles->setPurgeableFeed($id);
 
 		foreach ($aItems as $item)
 		{
 			$iArticleId = 0;
 			$sContentMd5 = md5((string) $item->content);
 
-			$rows = $this->articles->findRows('id, content_md5', [
+			$rows = $this->articles->findRows('id, content_md5, emptied_at', [
 				'link = '. $this->db->quote($item->link),
 				'feed_id = '.(int) $id
 			]);
 
 			if ($rows && $row = $rows->fetch())
 			{
-				// No need to update if content unchanged
-				if ($row->content_md5 == $sContentMd5)
-					continue;
-
 				$iArticleId = (int) $row->id;
+
+				// No need to update if content unchanged or article emptied
+				if ($row->content_md5 == $sContentMd5 || empty($row->emptied_at))
+				{
+					$this->articles->save(['is_purgeable' => 0], $iArticleId);
+					continue;
+				}
 			}
 
 			$aArticle = [
@@ -79,11 +83,13 @@ class FetchController extends RestController
 				'content'		=> (string) $item->content,
 				'content_md5'	=> $sContentMd5,
 				'pub_date'		=> date('Y-m-d H:i:s', $item->pub_date),
+				'is_purgeable'	=> 0
 			];
 
 			$this->articles->save($aArticle, $iArticleId);
 		}
 
+		$this->articles->purgeFeed($id);
 		$this->feeds->save(['last_update' => 'NOW()'], $id);
 
 		$this->response->json(['data' => 'Ok']);

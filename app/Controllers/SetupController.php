@@ -43,6 +43,7 @@ class SetupController extends Controller
 				is_read INTEGER NOT NULL DEFAULT (0),
 				is_archive INTEGER NOT NULL DEFAULT (0),
 				is_read_later INTEGER NOT NULL DEFAULT (0),
+				is_purgeable INTEGER NOT NULL DEFAULT (0),
 				created_at DATETIME,
 				updated_at DATETIME,
 				deleted_at DATETIME,
