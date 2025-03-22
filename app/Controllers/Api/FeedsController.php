@@ -36,7 +36,7 @@ class FeedsController extends RestController
 	{
 		$this->getOne(
 			$this->feeds->update(
-				$this->getFeedIdOrFail(),
+				$this->getIdOrFail(),
 				$this->request->post()
 			)
 		);
@@ -44,7 +44,7 @@ class FeedsController extends RestController
 
 	public function delete()
 	{
-		$this->feeds->delete($this->getFeedIdOrFail());
+		$this->feeds->delete($this->getIdOrFail());
 	}
 
 	private function getOne($id)
@@ -108,7 +108,7 @@ class FeedsController extends RestController
 		return $result;
 	}
 
-	private function getFeedIdOrFail()
+	private function getIdOrFail()
 	{
 		$id = (int) $this->arg(0);
 

@@ -50,4 +50,23 @@ class Feeds extends Table
 
 		return $aFiltered;
 	}
+	
+	/**
+	 * Delete the given feed.
+	 * 
+	 * It delete articles except archives.
+	 *
+	 * @param integer $id Feed ID to delete
+	 * @param bool $null Unused for feeds, soft delete unsupported.
+	 * @return bool
+	 */
+	public function delete($id, bool $null = true): bool
+	{
+		$this->oDb->query()->delete(Articles::TABLE_NAME)
+			->where('feed_id = :id AND is_archive = 0')
+			->setParameter('id', $id, \PDO::PARAM_INT)
+			->run();
+
+		return parent::delete($id, true);
+	}
 }

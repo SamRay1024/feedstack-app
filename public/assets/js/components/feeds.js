@@ -175,7 +175,9 @@ export let feeds = {
 	{
 		this.$dispatch('confirm', {
 			'title': 'Supprimer un flux',
-			'message': 'Confirmez-vous la suppression du flux "'+title+'" ?<br><strong>Cette opération est irréversible.</strong>',
+			'message': 'Confirmez-vous la suppression du flux "'+title+'" ?<br><br>'
+				+'<strong>Cette opération est irréversible.</strong><br><br>'
+				+'Seuls les articles archivés seront conservés.',
 			'confirmedEvent': 'feeds.delete',
 			'confirmedData': {'id': id}
 		});
