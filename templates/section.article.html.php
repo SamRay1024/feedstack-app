@@ -44,7 +44,8 @@
 					<br>
 
 					<i class="ti ti-link"></i>
-					<a target="_blank" :href="current.attributes.link" x-text="current.attributes.link"></a>
+					<a target="_blank" :href="current.attributes.link"
+						x-text="current.attributes.link_short"></a>
 				</span>
 			</header>
 

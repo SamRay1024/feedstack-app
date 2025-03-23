@@ -98,6 +98,7 @@ class ArticlesController extends RestController
 		$article->pub_date = date('d/m/Y, H\hi', strtotime($article->pub_date));
 		$article->content = html_entity_decode($article->content);
 		$article->summary = html_entity_decode($article->summary);
+		$article->link_short = $this->shortenUrl($article->link);
 
 		if ($article->content == '')
 			$article->content = $article->summary;
@@ -126,5 +127,19 @@ class ArticlesController extends RestController
 		);
 
 		return $id;
+	}
+
+	private function shortenUrl(string $sUrl)
+	{
+		// Parse the URL to extract the scheme and host
+		$aURL = parse_url($sUrl);
+
+		if (mb_strlen($aURL['path']) > 60)
+			$aURL['path'] =
+				mb_substr($aURL['path'], 0, 20)
+				.'(...)'
+				.mb_substr($aURL['path'], -20);
+
+		return rebuildUrl($aURL);
 	}
 }
