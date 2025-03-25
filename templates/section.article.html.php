@@ -8,8 +8,8 @@
 					@click="next()"></i>
 
 				<span @click="readLater"><i class="wbtn ti"
-					title="<?= __('Read later') ?>"
-					:class="{'ti-pin': !current.attributes.is_read_later, 'ti-pin-filled': current.attributes.is_read_later}"></i></span>
+						title="<?= __('Read later') ?>"
+						:class="{'ti-pin': !current.attributes.is_read_later, 'ti-pin-filled': current.attributes.is_read_later}"></i></span>
 
 				<span x-data="archiveArticle()" x-show="!current.attributes.is_archive">
 					<i class="wbtn ti ti-check" title="<?= __('Confirm') ?>" x-bind="confirm"></i>
@@ -17,12 +17,12 @@
 				</span>
 
 				<span x-data="deleteArticle()" x-show="!current.attributes.deleted_at">
-					<i class="wbtn ti ti-check" title="<?= __('Confirm') ?>" x-bind="confirm"></i>
+					<i class="wbtn wbtn-red ti ti-check" title="<?= __('Confirm') ?>" x-bind="confirm"></i>
 					<i class="wbtn ti ti-trash" title="<?= __('Delete article') ?>" x-bind="trigger"></i>
 				</span>
 
 				<span @click="restore" x-show="current.attributes.deleted_at"><i class="wbtn ti ti-restore"
-					title="<?= __('Restore') ?>"></i></span>
+						title="<?= __('Restore') ?>"></i></span>
 
 				<span x-data="emptyArticle()" x-show="current.attributes.deleted_at">
 					<i class="wbtn ti ti-check" title="<?= __('Confirm') ?>" x-bind="confirm"></i>

@@ -134,6 +134,9 @@ i.wbtn {
 	padding: .3em .4em;
 	cursor: pointer;
 }
+.small i.wbtn {
+	padding: .2em;
+}
 span.wbtn:hover,
 i.wbtn:hover {
 	background: var(--bg-color-btn-hover);
@@ -160,6 +163,9 @@ i.ti {
 }
 .ti-check {
 	color: var(--color-green);
+}
+.wbtn-red.ti-check {
+	color: white;
 }
 i.ti-logo {
 	color: #d9730d;

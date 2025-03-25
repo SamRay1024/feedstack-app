@@ -31,17 +31,17 @@
 				</span>
 
 				<span class="art-actions hidden small">
-					<span @click="markForLater(artIndex)"><i class="ti"
+					<span @click="markForLater(artIndex)"><i class="wbtn ti"
 						:class="{'ti-pin': !art.attributes.is_read_later, 'ti-pin-filled': art.attributes.is_read_later}"></i></span>
 					
 					<span x-data="archiveArticle(artIndex)" x-show="!art.attributes.is_archive">
-						<i class="ti ti-check" title="<?= __('Confirm') ?>" x-bind="confirm"></i>
-						<i class="ti ti-archive" title="<?= __('Archive article') ?>" x-bind="trigger"></i>
+						<i class="wbtn ti ti-check" title="<?= __('Confirm') ?>" x-bind="confirm"></i>
+						<i class="wbtn ti ti-archive" title="<?= __('Archive article') ?>" x-bind="trigger"></i>
 					</span>
 
 					<span x-data="deleteArticle(artIndex)" x-show="!art.attributes.deleted_at">
-						<i class="ti ti-check" title="<?= __('Confirm') ?>" x-bind="confirm"></i>
-						<i class="ti ti-trash" title="<?= __('Delete article') ?>" x-bind="trigger"></i>
+						<i class="wbtn wbtn-red ti ti-check" title="<?= __('Confirm') ?>" x-bind="confirm"></i>
+						<i class="wbtn ti ti-trash" title="<?= __('Delete article') ?>" x-bind="trigger"></i>
 					</span>
 
 					<span @click="restore(artIndex)" x-show="art.attributes.deleted_at"><i
