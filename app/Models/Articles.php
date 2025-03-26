@@ -20,7 +20,8 @@ class Articles extends Table
 		'is_new'		=> \PDO::PARAM_BOOL,
 		'is_read'		=> \PDO::PARAM_BOOL,
 		'is_archive'	=> \PDO::PARAM_BOOL,
-		'is_read_later'	=> \PDO::PARAM_BOOL
+		'is_read_later'	=> \PDO::PARAM_BOOL,
+		'is_purgeable'	=> \PDO::PARAM_BOOL
 	];
 
 	public function filterFields(array $aFields, $id = 0): array
@@ -38,7 +39,8 @@ class Articles extends Table
 			'is_new'		=> FILTER_VALIDATE_BOOL,
 			'is_read'		=> FILTER_VALIDATE_BOOL,
 			'is_archive'	=> FILTER_VALIDATE_BOOL,
-			'is_read_later'	=> FILTER_VALIDATE_BOOL
+			'is_read_later'	=> FILTER_VALIDATE_BOOL,
+			'is_purgeable'	=> FILTER_VALIDATE_BOOL
 		], false);
 		
 		if ($aFiltered === false)
@@ -218,6 +220,17 @@ class Articles extends Table
 			->where('feed_id = :id AND ' . self::COL_EMPTIED_AT_NAME .' IS NOT NULL')
 			->setParameter('id', $iFeedId)
 			->run();
+	}
+	
+	/**
+	 * Set article as unpurgeable.
+	 *
+	 * @param mixed $iArticleId Article ID.
+	 * @return int|false
+	 */
+	public function setUnpurgeable(int $iArticleId)
+	{
+		return $this->save(['is_purgeable' => 0], $iArticleId);
 	}
 
 	/**

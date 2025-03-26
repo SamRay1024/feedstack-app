@@ -66,9 +66,13 @@ class FetchController extends RestController
 				$iArticleId = (int) $row->id;
 
 				// No need to update if content unchanged or article emptied
-				if ($row->content_md5 == $sContentMd5 || empty($row->emptied_at))
+				if (!empty($row->emptied_at))
 				{
-					$this->articles->save(['is_purgeable' => 0], $iArticleId);
+					$this->articles->setUnpurgeable($iArticleId);
+					continue;
+				}
+				elseif ($row->content_md5 == $sContentMd5)
+				{
 					continue;
 				}
 			}
@@ -82,8 +86,7 @@ class FetchController extends RestController
 				'summary'		=> (string) $item->summary,
 				'content'		=> (string) $item->content,
 				'content_md5'	=> $sContentMd5,
-				'pub_date'		=> date('Y-m-d H:i:s', $item->pub_date),
-				'is_purgeable'	=> 0
+				'pub_date'		=> date('Y-m-d H:i:s', $item->pub_date)
 			];
 
 			$this->articles->save($aArticle, $iArticleId);
