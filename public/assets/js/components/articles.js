@@ -138,7 +138,7 @@ export let articles = {
 			if (response.status != 204)
 				return;
 			
-			this.removeArticle();
+			this.removeArticle(iIndex);
 			this.$store.counts.later += (bIsLater ? 1 : -1);
 		});
 	},
@@ -184,7 +184,7 @@ export let articles = {
 				return;
 
 			this.updateArticleCounters(iIndex, 1);
-			this.removeArticle();
+			this.removeArticle(iIndex);
 		})
 	},
 
