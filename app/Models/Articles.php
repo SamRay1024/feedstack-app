@@ -23,6 +23,43 @@ class Articles extends Table
 		'is_read_later'	=> \PDO::PARAM_BOOL,
 		'is_purgeable'	=> \PDO::PARAM_BOOL
 	];
+	
+	/**
+	 * Run the create table SQL statement.
+	 *
+	 * @return void
+	 */
+	public function createTable()
+	{
+		$this->oDb->execute(
+			'CREATE TABLE IF NOT EXISTS articles (
+				id INTEGER PRIMARY KEY,
+				feed_id INTEGER NOT NULL,
+				title VARCHAR(255) NOT NULL,
+				link VARCHAR(255) NOT NULL,
+				author VARCHAR(255) NOT NULL,
+				category VARCHAR(80) NOT NULL,
+				summary TEXT,
+				content TEXT,
+				content_md5 VARCHAR(32),
+				pub_date DATETIME,
+				is_new INTEGER NOT NULL DEFAULT (1),
+				is_read INTEGER NOT NULL DEFAULT (0),
+				is_archive INTEGER NOT NULL DEFAULT (0),
+				is_read_later INTEGER NOT NULL DEFAULT (0),
+				is_purgeable INTEGER NOT NULL DEFAULT (0),
+				created_at DATETIME,
+				updated_at DATETIME,
+				deleted_at DATETIME,
+				emptied_at DATETIME,
+				FOREIGN KEY (feed_id) REFERENCES feeds (id) ON DELETE CASCADE
+			);'
+		);
+
+		$this->oDb->execute(
+			'CREATE INDEX IF NOT EXISTS idx_pub_date ON articles (pub_date)'
+		);
+	}
 
 	public function filterFields(array $aFields, $id = 0): array
 	{

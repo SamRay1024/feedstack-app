@@ -14,6 +14,25 @@ class Feeds extends Table
 	const COL_CREATED_AT_NAME = 'created_at';
 	const COL_UPDATED_AT_NAME = 'updated_at';
 
+	/**
+	 * Run the create table SQL statement.
+	 *
+	 * @return void
+	 */
+	public function createTable()
+	{
+		$this->oDb->execute(
+			'CREATE TABLE IF NOT EXISTS feeds (
+				id INTEGER PRIMARY KEY,
+				title VARCHAR(255) NOT NULL,
+				url VARCHAR(255) NOT NULL UNIQUE,
+				last_update DATETIME,
+				created_at DATETIME,
+				updated_at DATETIME
+			)'
+		);
+	}
+
 	public function filterFields(array $aFields, $id = 0): array
 	{
 		$aFiltered = filter_var_array($aFields, [
