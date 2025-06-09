@@ -5,6 +5,7 @@ namespace App\Models;
 use RuntimeException;
 use UnexpectedValueException;
 use wlib\Application\Exceptions\UnexpectedFieldValueException;
+use wlib\Db\Db;
 use wlib\Db\Table;
 
 class Feeds extends Table
@@ -21,15 +22,20 @@ class Feeds extends Table
 	 */
 	public function createTable()
 	{
+		$sAutoIncrement = ($this->oDb->getDriver() == Db::DRV_SQLTE
+			? 'AUTOINCREMENT'
+			: 'AUTO_INCREMENT'
+		);
+
 		$this->oDb->execute(
-			'CREATE TABLE IF NOT EXISTS feeds (
-				id INTEGER PRIMARY KEY,
+			"CREATE TABLE IF NOT EXISTS feeds (
+				id INTEGER PRIMARY KEY $sAutoIncrement,
 				title VARCHAR(255) NOT NULL,
 				url VARCHAR(255) NOT NULL UNIQUE,
 				last_update DATETIME,
 				created_at DATETIME,
 				updated_at DATETIME
-			)'
+			)"
 		);
 	}
 

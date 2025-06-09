@@ -4,6 +4,7 @@ namespace App\Models;
 
 use PDO;
 use RuntimeException;
+use wlib\Db\Db;
 use wlib\Db\Table;
 
 class Articles extends Table
@@ -31,9 +32,14 @@ class Articles extends Table
 	 */
 	public function createTable()
 	{
+		$sAutoIncrement = ($this->oDb->getDriver() == Db::DRV_SQLTE
+			? 'AUTOINCREMENT'
+			: 'AUTO_INCREMENT'
+		);
+
 		$this->oDb->execute(
-			'CREATE TABLE IF NOT EXISTS articles (
-				id INTEGER PRIMARY KEY,
+			"CREATE TABLE IF NOT EXISTS articles (
+				id INTEGER PRIMARY KEY $sAutoIncrement,
 				feed_id INTEGER NOT NULL,
 				title VARCHAR(255) NOT NULL,
 				link VARCHAR(255) NOT NULL,
@@ -43,22 +49,34 @@ class Articles extends Table
 				content TEXT,
 				content_md5 VARCHAR(32),
 				pub_date DATETIME,
-				is_new INTEGER NOT NULL DEFAULT (1),
-				is_read INTEGER NOT NULL DEFAULT (0),
-				is_archive INTEGER NOT NULL DEFAULT (0),
-				is_read_later INTEGER NOT NULL DEFAULT (0),
-				is_purgeable INTEGER NOT NULL DEFAULT (0),
+				is_new INTEGER NOT NULL DEFAULT 1,
+				is_read INTEGER NOT NULL DEFAULT 0,
+				is_archive INTEGER NOT NULL DEFAULT 0,
+				is_read_later INTEGER NOT NULL DEFAULT 0,
+				is_purgeable INTEGER NOT NULL DEFAULT 0,
 				created_at DATETIME,
 				updated_at DATETIME,
 				deleted_at DATETIME,
 				emptied_at DATETIME,
 				FOREIGN KEY (feed_id) REFERENCES feeds (id) ON DELETE CASCADE
-			);'
+			);"
 		);
 
-		$this->oDb->execute(
-			'CREATE INDEX IF NOT EXISTS idx_pub_date ON articles (pub_date)'
-		);
+		if ($this->oDb->getDriver() == Db::DRV_MYSQL)
+		{
+			$oStatement = $this->oDb->execute(
+				'SHOW INDEX FROM articles WHERE Key_name = "idx_pub_date"'
+			);
+			
+			if (!$oStatement->fetch())
+				$this->oDb->execute(
+					'ALTER TABLE articles ADD INDEX `idx_pub_date` (`pub_date`)'
+				);
+		}
+		else
+			$this->oDb->execute(
+				'CREATE INDEX IF NOT EXISTS idx_pub_date ON articles (pub_date)'
+			);
 	}
 
 	public function filterFields(array $aFields, $id = 0): array
