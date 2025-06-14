@@ -2,15 +2,12 @@
 
 namespace App\Controllers;
 
-use App\Models\Articles;
 use wlib\Application\Controllers\Controller;
 
 class InfosController extends Controller
 {
 	public function start()
 	{
-		vdd($this->app->getTable(Articles::class)->getUnreadArticlesCount(1));
-
 		echo '<pre>';
 
 		echo "## Time : " . date("d/m/Y H:i:s");
