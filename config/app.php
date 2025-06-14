@@ -1,31 +1,37 @@
 <?php
 
+$sBasePath = dirname(__DIR__);
+
 return [
 
 	/* ==== GLOBALS ========================================================= */
 
-	'name'				=> 'FeedStack',
-	'production'		=> false,
-	'public_path'		=> ROOT_DIR .'/public',
-	'storage_path'		=> ROOT_DIR .'/storage',
-	'cache_path'		=> ROOT_DIR .'/storage/cache',
-	'logs_path'			=> ROOT_DIR .'/storage/logs',
-	'templates_path'	=> ROOT_DIR .'/templates',
-	'i18n_path'			=> ROOT_DIR .'/locales',
-	'base_url'			=> 'localhost:8000',
-	'base_uri'			=> '/',
-	'psr4_folders'		=> ['App\\' => ROOT_DIR .'/app'],
+	'name'				=> env('APP_NAME'),
+	'production'		=> env('APP_PRODUCTION'),
+	'public_path'		=> $sBasePath .'/public',
+	'storage_path'		=> $sBasePath .'/storage',
+	'cache_path'		=> $sBasePath .'/storage/cache',
+	'logs_path'			=> $sBasePath .'/storage/logs',
+	'templates_path'	=> $sBasePath .'/templates',
+	'i18n_path'			=> $sBasePath .'/locales',
+	'base_url'			=> env('APP_BASE_URL', 'localhost:8000'),
+	'base_uri'			=> env('APP_BASE_URI', '/'),
+	'psr4_folders'		=> ['App\\' => $sBasePath .'/app'],
 	'ns_controllers'	=> 'App\\Controllers',
-	'timezone'			=> 'Europe/Paris',
-	'i18n_locale'		=> 'fr_FR',
-	'private_key'		=> file_get_contents(__DIR__.'/pkey.file'),
+	'timezone'			=> env('APP_TIMEZONE', 'Europe/Paris'),
+	'i18n_locale'		=> env('APP_I18N_LOCALE', 'fr_FR'),
+	'private_key'		=> env('APP_PRIVATE_KEY', ''),
 	
 	/* ==== DATABASES ======================================================= */
 	
 	'databases'			=> [
 		'default' => [
-			'driver'	=> 'sqlite',
-			'database'	=> ROOT_DIR.'/storage/db.sqlite'
+			'driver'	=> env('APP_DB_DRIVER', ''),
+			'database'	=> env('APP_DB_DATABASE', ''),
+			'host'		=> env('APP_DB_HOST', ''),
+			'port'		=> env('APP_DB_PORT', 0),
+			'username'	=> env('APP_DB_USERNAME', ''),
+			'password'	=> env('APP_DB_PASSWORD', ''),
 		],
 		// 'other' => [
 		// 	'driver'	=> 'mysql',
@@ -64,7 +70,7 @@ return [
 		// Guard parameters
 		'guard' => [
 			'web' => [
-				'can_register' => true
+				'can_register' => env('APP_CAN_REGISTER', false)
 			]
 		]
 	],

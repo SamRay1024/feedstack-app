@@ -164,6 +164,9 @@ i.ti {
 .ti-check {
 	color: var(--color-green);
 }
+.ti-x {
+	color: var(--color-red);
+}
 .wbtn-red.ti-check {
 	color: white;
 }
