@@ -126,7 +126,7 @@ class SetupController extends FrontController
 						'value_error' => __('Database port must be an integer.'),
 						'empty_if' => ['db_driver' => 'mysql']
 					],
-					'db_user' => [
+					'db_username' => [
 						'filter' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
 						'flags' => FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_HIGH,
 						'empty_error' => __('Database username can\'t be empty.'),
@@ -186,15 +186,11 @@ class SetupController extends FrontController
 					],
 					'mailer_smtp_username' => [
 						'filter' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
-						'flags' => FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_HIGH,
-						'empty_error' => __('SMTP username can\'t be empty.'),
-						'empty_if' => ['can_register' => true, 'mailer_driver' => 'smtp']
+						'flags' => FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_HIGH
 					],
 					'mailer_smtp_password' => [
 						'filter' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
-						'flags' => FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_HIGH,
-						'empty_error' => __('SMTP password can\'t be empty.'),
-						'empty_if' => ['can_register' => true, 'mailer_driver' => 'smtp']
+						'flags' => FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_HIGH
 					],
 					'mailer_from' => [
 						'filter' => FILTER_VALIDATE_EMAIL,
@@ -231,10 +227,10 @@ class SetupController extends FrontController
 
 		foreach ($aFiltered as $sField => $mValue)
 		{
+			$bIgnoreError = false;
+
 			if (empty($mValue) && isset($aFilters[$sField]['empty_error']))
 			{
-				$bIgnoreError = false;
-
 				if (isset($aFilters[$sField]['empty_if']))
 				{
 					foreach ($aFilters[$sField]['empty_if'] as $sDepKey => $sDepValue)
@@ -279,7 +275,7 @@ class SetupController extends FrontController
 			if ($this->aFormData['db_driver'] == 'sqlite')
 			{
 				$this->aFormData['db_database'] = config('app.storage_path').'/db.sqlite';
-				$this->aFormData['db_user'] = null;
+				$this->aFormData['db_username'] = null;
 				$this->aFormData['db_pwd'] = null;
 				$this->aFormData['db_host'] = null;
 				$this->aFormData['db_port'] = null;
@@ -288,10 +284,11 @@ class SetupController extends FrontController
 			$this->oDb = new Db(
 				$this->aFormData['db_driver'],
 				$this->aFormData['db_database'],
-				$this->aFormData['db_user'],
+				$this->aFormData['db_username'],
 				$this->aFormData['db_pwd'],
 				$this->aFormData['db_host'],
-				$this->aFormData['db_port']
+				$this->aFormData['db_port'],
+				'utf8mb4'
 			);
 			
 			$this->oDb->connect();

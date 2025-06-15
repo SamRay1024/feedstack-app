@@ -139,9 +139,9 @@
 					</div>
 				</div>
 				<div class="wfield" x-show="mysql">
-					<label for="db_user"><?= __('Username:') ?></label>
+					<label for="db_username"><?= __('Username:') ?></label>
 					<div class="winput">
-						<input type="text" name="db_user" id="db_user"
+						<input type="text" name="db_username" id="db_user"
 							value="<?= post('db_user') ?>">
 					</div>
 				</div>
@@ -234,7 +234,7 @@
 
 					<h4><i class="ti ti-mail-cog"></i> <?= __('Mailer configuration') ?></h4>
 	
-					<div x-data="{smtp: <?= post('mailer_driver', 'smtp') == 'smtp' ? 'true' : 'false' ?>}">
+					<div x-data="{smtp: <?= post('mailer_driver') == 'smtp' ? 'true' : 'false' ?>}">
 						<div class="wfield">
 							<label for="mailer_driver"><?= __('Driver:') ?></label>
 							<div class="winput">
@@ -259,7 +259,7 @@
 							<label for="mailer_smtp_port"><?= __('SMTP port:') ?></label>
 							<div class="winput">
 								<input type="text" name="mailer_smtp_port" id="mailer_smtp_port"
-									value="<?= post('mailer_smtp_port') ?>" size="5">
+									value="<?= (int) post('mailer_smtp_port') ?>" size="5">
 							</div>
 						</div>
 						
