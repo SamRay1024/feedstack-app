@@ -284,7 +284,8 @@
 						<label for="mailer_from"><?= __('From address:') ?></label>
 						<div class="winput">
 							<input type="text" name="mailer_from" id="mailer_from"
-								class="w100" value="<?= post('mailer_from') ?>">
+								class="w100" value="<?= post('mailer_from') ?>"
+								placeholder="noreply@myapp.com">
 						</div>
 					</div>
 
@@ -292,7 +293,8 @@
 						<label for="mailer_replyto"><?= __('Reply-To address:') ?></label>
 						<div class="winput">
 							<input type="text" name="mailer_replyto" id="mailer_replyto"
-								class="w100" value="<?= post('mailer_replyto') ?>">
+								class="w100" value="<?= post('mailer_replyto') ?>"
+								placeholder="support@myapp.com">
 						</div>
 					</div>
 

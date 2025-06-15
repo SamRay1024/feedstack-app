@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Controllers;
 
@@ -18,6 +18,15 @@ class SetupController extends FrontController
 
 	public function start()
 	{
+		if (file_exists($this->app->get('sys.env_file')))
+			$this->redirect('/');
+
+		if ($this->arg(0) == 'pkey')
+		{
+			$this->pkey();
+			return;
+		}
+
 		$this->session->start();
 
 		if (!$this->checkPathsWriteable())
@@ -29,14 +38,6 @@ class SetupController extends FrontController
 			$this->install();
 		
 		return;
-
-		$sSubRoute = $this->arg(0);
-
-		if (method_exists($this, $sSubRoute))
-		{
-			$this->$sSubRoute();
-			return;
-		}
 	}
 	
 	/**
@@ -395,16 +396,10 @@ class SetupController extends FrontController
 		return $hmgr->hash($sPwd);
 	}
 
-	public function pwd()
+	private function pkey()
 	{
-		/** @var \wlib\Application\Crypto\HashManager */
-		$hasher = $this->app->get('hash.manager', ['bcrypt']);
-
-		echo $hasher->hash($this->arg(1));
-	}
-
-	public function pkey()
-	{
-		$this->response->flush(makePrivateKey());
+		$this->response->setBody(
+			'<input type="text" size="64" value="'.htmlspecialchars(makePrivateKey('aes-256-xts')).'">'
+		);
 	}
 }

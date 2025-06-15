@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FeedStack\n"
 "POT-Creation-Date: 2025-06-15 11:05+0200\n"
-"PO-Revision-Date: 2025-06-15 16:07+0200\n"
+"PO-Revision-Date: 2025-06-16 00:24+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -271,7 +271,7 @@ msgstr "Nom :"
 
 #: templates/setup.html.php:175
 msgid "Email:"
-msgstr "Adresse de courriel :"
+msgstr "Courriel :"
 
 #: templates/setup.html.php:190
 msgid "Generate"
@@ -311,11 +311,11 @@ msgstr "Méthode d'envoi :"
 
 #: templates/setup.html.php:242
 msgid "<code>mail()</code> function"
-msgstr ""
+msgstr "Fonction <code>mail()</code>"
 
 #: templates/setup.html.php:244
 msgid "<code>sendmail()</code> function"
-msgstr ""
+msgstr "Fonction <code>sendmail()</code>"
 
 #: templates/setup.html.php:251
 msgid "SMTP host:"
@@ -335,11 +335,11 @@ msgstr "Mot de passe SMTP :"
 
 #: templates/setup.html.php:284
 msgid "From address:"
-msgstr "Adresse d'expéditeur (\"From\") :"
+msgstr "Expéditeur :"
 
 #: templates/setup.html.php:292
 msgid "Reply-To address:"
-msgstr "Adresse pour les réponses (\"Reply-To\") :"
+msgstr "Répondre à :"
 
 #: templates/setup.html.php:303
 msgid "Install"
