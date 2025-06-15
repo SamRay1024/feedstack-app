@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: FeedStack\n"
-"POT-Creation-Date: 2025-03-08 15:33+0100\n"
-"PO-Revision-Date: 2025-03-08 15:35+0100\n"
+"POT-Creation-Date: 2025-06-15 11:05+0200\n"
+"PO-Revision-Date: 2025-06-15 16:07+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -21,14 +21,84 @@ msgstr ""
 msgid "Unreachable feed."
 msgstr "Flux injoignable."
 
+#: app/Controllers/SetupController.php:116
+msgid "Select a database type."
+msgstr "Sélectionnez un type de base de données."
+
+#: app/Controllers/SetupController.php:121
+msgid "Database host can't be empty."
+msgstr "Le serveur de base de données ne peut être vide."
+
+#: app/Controllers/SetupController.php:126
+msgid "Database port must be an integer."
+msgstr "Le port de la base de données doit être un nombre."
+
+#: app/Controllers/SetupController.php:132
+msgid "Database username can't be empty."
+msgstr "L'utilisateur de la base de données ne peut être vide."
+
+#: app/Controllers/SetupController.php:143
+msgid "Database can't be empty."
+msgstr "Le nom de la base de données ne peut être vide."
+
+#: app/Controllers/SetupController.php:149
+msgid "User name can't be empty."
+msgstr "Le nom de l'utilisateur ne peut être vide."
+
+#: app/Controllers/SetupController.php:153
+msgid "User email must be a valid email address."
+msgstr "L'adresse email de l'utilisateur doit être une adresse email valide."
+
+#: app/Controllers/SetupController.php:158
+msgid "User password can't be empty."
+msgstr "Le mot de passe utilisateur ne peut être vide."
+
+#: app/Controllers/SetupController.php:163
+msgid "Timezone can't be empty."
+msgstr "Le fuseau horaire ne peut être vide."
+
+#: app/Controllers/SetupController.php:173
+msgid "Select a mailer driver."
+msgstr "Sélectionnez une méthode d'envoi des courriels."
+
+#: app/Controllers/SetupController.php:179
+msgid "SMTP host can't be empty."
+msgstr "L'adresse du serveur SMTP ne peut être vide."
+
+#: app/Controllers/SetupController.php:184
+msgid "SMTP port must be an integer."
+msgstr "Le port du serveur SMTP doit être un nombre."
+
+#: app/Controllers/SetupController.php:197
+msgid "Mailer \"from\" field must be a valid email address."
+msgstr "L'adresse d'expéditeur doit être une adresse de courriel valide."
+
+#: app/Controllers/SetupController.php:198
+msgid "Mailer \"from\" field can't be empty for handling registrations."
+msgstr ""
+"L'adresse d'expéditeur des courriels ne peut être vide pour gérer les "
+"inscriptions."
+
+#: app/Controllers/SetupController.php:203
+msgid "Mailer \"replyto\" field must be a valid email address."
+msgstr "L'adresse pour les réponses doit être une adresse de courriel valide."
+
+#: app/Controllers/SetupController.php:204
+msgid "Mailer \"replyto\" field can't be empty for handling registrations."
+msgstr ""
+"L'adresse de courriel pour les réponses ne peut être vide pour gérer les "
+"inscriptions."
+
 #: templates/component.confirm.html.php:9 templates/section.feeds.html.php:103
 msgid "Cancel"
 msgstr "Annuler"
 
 #: templates/component.confirm.html.php:10
-#: templates/section.article.html.php:14 templates/section.article.html.php:19
-#: templates/section.articles.html.php:38
-#: templates/section.articles.html.php:43 templates/section.feeds.html.php:109
+#: templates/section.article.html.php:15 templates/section.article.html.php:20
+#: templates/section.article.html.php:28 templates/section.articles.html.php:38
+#: templates/section.articles.html.php:43
+#: templates/section.articles.html.php:52 templates/section.feeds.html.php:40
+#: templates/section.feeds.html.php:109
 msgid "Confirm"
 msgstr "Valider"
 
@@ -40,13 +110,25 @@ msgstr "Afficher l'article précédent"
 msgid "Show next article"
 msgstr "Afficher l'article suivant"
 
-#: templates/section.article.html.php:15 templates/section.articles.html.php:39
+#: templates/section.article.html.php:11 templates/section.feeds.html.php:23
+msgid "Read later"
+msgstr "À lire plus tard"
+
+#: templates/section.article.html.php:16 templates/section.articles.html.php:39
 msgid "Archive article"
 msgstr "Archiver l'article"
 
-#: templates/section.article.html.php:20 templates/section.articles.html.php:44
+#: templates/section.article.html.php:21 templates/section.articles.html.php:44
 msgid "Delete article"
 msgstr "Supprimer l'article"
+
+#: templates/section.article.html.php:25 templates/section.articles.html.php:49
+msgid "Restore"
+msgstr "Restaurer"
+
+#: templates/section.article.html.php:29 templates/section.articles.html.php:53
+msgid "Remove from trash"
+msgstr "Vider la corbeille"
 
 #: templates/section.articles.html.php:3
 msgid "Select a feed"
@@ -60,7 +142,7 @@ msgstr "Aucun article pour l'instant."
 msgid "Logout"
 msgstr "Se déconnecter"
 
-#: templates/section.feeds.html.php:6
+#: templates/section.feeds.html.php:6 templates/setup.html.php:197
 msgid "Settings"
 msgstr "Paramètres"
 
@@ -72,10 +154,6 @@ msgstr "Mettre à jour"
 msgid "Today"
 msgstr "Aujourd'hui"
 
-#: templates/section.feeds.html.php:23
-msgid "Read later"
-msgstr "À lire plus tard"
-
 #: templates/section.feeds.html.php:32
 msgid "Archives"
 msgstr "Archives"
@@ -84,7 +162,7 @@ msgstr "Archives"
 msgid "Trash"
 msgstr "Corbeille"
 
-#: templates/section.feeds.html.php:40
+#: templates/section.feeds.html.php:41
 msgid "Empty trash"
 msgstr "Vider la corbeille"
 
@@ -128,6 +206,180 @@ msgstr "Vérifier"
 msgid "Add"
 msgstr "Ajouter"
 
+#: templates/setup.html.php:59
+msgid "Unable to install, please fix the following error(s) :"
+msgstr "Impossible d'installer, veuillez corriger les erreurs suivantes :"
+
+#: templates/setup.html.php:76
+msgid "Adjust permissions"
+msgstr "Ajuster les permissions"
+
+#: templates/setup.html.php:79
+msgid ""
+"Please set all the following folders writeable to continue the installation."
+msgstr ""
+"Veuillez rendre les dossiers suivants accessible en écriture pour pouvoir "
+"poursuivre l'installation."
+
+#: templates/setup.html.php:85
+msgid "Folder"
+msgstr "Dossier"
+
+#: templates/setup.html.php:86
+msgid "Writeable"
+msgstr "Accessible en écriture"
+
+#: templates/setup.html.php:105 templates/setup.html.php:318
+msgid "Ok, it's done"
+msgstr "Ok, c'est fait"
+
+#: templates/setup.html.php:111
+msgid "Database"
+msgstr "Base de données"
+
+#: templates/setup.html.php:116
+msgid "Type:"
+msgstr "Type :"
+
+#: templates/setup.html.php:128
+msgid "Host:"
+msgstr "Serveur :"
+
+#: templates/setup.html.php:135
+msgid "Port:"
+msgstr "Port :"
+
+#: templates/setup.html.php:142
+msgid "Username:"
+msgstr "Utilisateur :"
+
+#: templates/setup.html.php:149 templates/setup.html.php:183
+msgid "Password:"
+msgstr "Mot de passe :"
+
+#: templates/setup.html.php:156
+msgid "Database:"
+msgstr "Nom de la base :"
+
+#: templates/setup.html.php:164
+msgid "User account"
+msgstr "Compte utilisateur"
+
+#: templates/setup.html.php:167
+msgid "Name:"
+msgstr "Nom :"
+
+#: templates/setup.html.php:175
+msgid "Email:"
+msgstr "Adresse de courriel :"
+
+#: templates/setup.html.php:190
+msgid "Generate"
+msgstr "Générer"
+
+#: templates/setup.html.php:193
+msgid "Copy"
+msgstr "Copier"
+
+#: templates/setup.html.php:200
+msgid "Timezone:"
+msgstr "Fuseau horaire :"
+
+#: templates/setup.html.php:208
+msgid "Language:"
+msgstr "Langue :"
+
+#: templates/setup.html.php:220
+msgid "Registrations:"
+msgstr "Inscriptions :"
+
+#: templates/setup.html.php:225
+msgid "Closed"
+msgstr "Fermées"
+
+#: templates/setup.html.php:229
+msgid "Opened"
+msgstr "Ouvertes"
+
+#: templates/setup.html.php:235
+msgid "Mailer configuration"
+msgstr "Envoi des courriels"
+
+#: templates/setup.html.php:239
+msgid "Driver:"
+msgstr "Méthode d'envoi :"
+
+#: templates/setup.html.php:242
+msgid "<code>mail()</code> function"
+msgstr ""
+
+#: templates/setup.html.php:244
+msgid "<code>sendmail()</code> function"
+msgstr ""
+
+#: templates/setup.html.php:251
+msgid "SMTP host:"
+msgstr "Serveur SMTP :"
+
+#: templates/setup.html.php:259
+msgid "SMTP port:"
+msgstr "Port SMTP :"
+
+#: templates/setup.html.php:267
+msgid "SMTP username:"
+msgstr "Utilisateur SMTP :"
+
+#: templates/setup.html.php:275
+msgid "SMTP password:"
+msgstr "Mot de passe SMTP :"
+
+#: templates/setup.html.php:284
+msgid "From address:"
+msgstr "Adresse d'expéditeur (\"From\") :"
+
+#: templates/setup.html.php:292
+msgid "Reply-To address:"
+msgstr "Adresse pour les réponses (\"Reply-To\") :"
+
+#: templates/setup.html.php:303
+msgid "Install"
+msgstr "Installer"
+
+#: templates/setup.html.php:310
+msgid "Almost ready"
+msgstr "Presque prêt"
+
+#: templates/setup.html.php:312
+msgid ""
+"I was not able to save your configuration in the .env file in the root "
+"folder."
+msgstr ""
+"Je n'ai pas pu enregistrer votre configuration dans le fichier .env du "
+"dossier racine."
+
+#: templates/setup.html.php:314
+msgid ""
+"You can copy-paste manually the following content to finish the installation "
+"process :"
+msgstr ""
+"Vous pouvez copier-coller manuellement le contenu suivant pour finaliser le "
+"processus d'installation :"
+
+#: templates/setup.html.php:324
+msgid "Great job !"
+msgstr "Beau travail !"
+
+#: templates/setup.html.php:326
+msgid "You've done the harder part. Installation is finished !"
+msgstr "Vous avez fait le plus dur. L'installation est terminée !"
+
+#: templates/setup.html.php:328
+msgid "Go and see how it looks like !"
+msgstr "Aller voir à quoi ça ressemble !"
+
+#~ msgid "SMTP username can't be empty."
+#~ msgstr "L'utilisateur du serveur ne peut être vide."
+
 #~ msgid "Verification failed : please renew your registration."
 #~ msgstr "Vérification échouée : veuillez renouveler votre inscription."
 
@@ -138,22 +390,16 @@ msgstr "Ajouter"
 #~ msgstr "Echec du renouvellement de mot de passe : utilisateur introuvable."
 
 #~ msgid "Password renewal failed : please restart the procedure."
-#~ msgstr "Echec du renouvellement du mot de passe : veuillez relancer la procédure."
+#~ msgstr ""
+#~ "Echec du renouvellement du mot de passe : veuillez relancer la procédure."
 
 #~ msgid "Your password has been updated. You should log in again."
-#~ msgstr "Votre mot de passe a été mis à jour. Vous devriez pouvoir vous connecter à nouveau."
-
-#~ msgid "User:"
-#~ msgstr "Utilisateur :"
-
-#~ msgid "Password:"
-#~ msgstr "Mot de passe :"
+#~ msgstr ""
+#~ "Votre mot de passe a été mis à jour. Vous devriez pouvoir vous connecter "
+#~ "à nouveau."
 
 #~ msgid "Connect"
 #~ msgstr "Se connecter"
-
-#~ msgid "Register"
-#~ msgstr "Créer un compte"
 
 #~ msgid "Forgot password ?"
 #~ msgstr "Mot de passe oublié ?"
@@ -161,14 +407,15 @@ msgstr "Ajouter"
 #~ msgid "Register your email address"
 #~ msgstr "Enregistrez votre adresse de courriel"
 
-#~ msgid "Email address:"
-#~ msgstr "Adresse de courriel :"
-
 #~ msgid "A validation email with a link will be sent to the given address."
-#~ msgstr "Un courriel contenant un lien de validation sera envoyé à l'adresse indiquée."
+#~ msgstr ""
+#~ "Un courriel contenant un lien de validation sera envoyé à l'adresse "
+#~ "indiquée."
 
 #~ msgid "Please click on the link to continue the registering process."
-#~ msgstr "Veuillez cliquer sur le lien afin de poursuivre le processus d'ouverture de compte."
+#~ msgstr ""
+#~ "Veuillez cliquer sur le lien afin de poursuivre le processus d'ouverture "
+#~ "de compte."
 
 #~ msgid "Send"
 #~ msgstr "Envoyer"
@@ -179,8 +426,11 @@ msgstr "Ajouter"
 #~ msgid "Thanks for your interest !"
 #~ msgstr "Merci pour votre intérêt !"
 
-#~ msgid "A validation email has been sent. Check your mail box for our confirmation email."
-#~ msgstr "Un courriel de validation a été envoyé. Vérifiez votre boîte de réception."
+#~ msgid ""
+#~ "A validation email has been sent. Check your mail box for our "
+#~ "confirmation email."
+#~ msgstr ""
+#~ "Un courriel de validation a été envoyé. Vérifiez votre boîte de réception."
 
 #~ msgid "You can now close this page. See you very soon !"
 #~ msgstr "Vous pouvez désormais fermer cette page. À tout de suite !"
@@ -194,9 +444,6 @@ msgstr "Ajouter"
 #~ msgid "Password verification:"
 #~ msgstr "Vérification du mot de passe :"
 
-#~ msgid "Create my account"
-#~ msgstr "Créer mon compte"
-
 #~ msgid "Don't remember your password ?"
 #~ msgstr "Vous avez oublié votre mot de passe ?"
 
@@ -204,13 +451,19 @@ msgstr "Ajouter"
 #~ msgstr "Merci de renseigner l'adresse de courriel de votre compte."
 
 #~ msgid "You will receive an email with a link to renew your password."
-#~ msgstr "Un lien pour accéder au renouvellement de votre mot de passe sera envoyé."
+#~ msgstr ""
+#~ "Un lien pour accéder au renouvellement de votre mot de passe sera envoyé."
 
 #~ msgid "Password renewal in progress"
 #~ msgstr "Renouvellement de mot de passe en cours"
 
-#~ msgid "An email has been sent with a link to access password renewal form. Check your mail box."
-#~ msgstr "Un courriel contenant un lien pour accéder au formulaire de renouvellement de mot de passe a été envoyé. Vérifiez votre boite de réception."
+#~ msgid ""
+#~ "An email has been sent with a link to access password renewal form. Check "
+#~ "your mail box."
+#~ msgstr ""
+#~ "Un courriel contenant un lien pour accéder au formulaire de "
+#~ "renouvellement de mot de passe a été envoyé. Vérifiez votre boite de "
+#~ "réception."
 
 #~ msgid "You can now close this page."
 #~ msgstr "Vous pouvez désormais fermer cette page."
@@ -225,16 +478,21 @@ msgstr "Ajouter"
 #~ msgstr "Confirmez votre inscription"
 
 #~ msgid "Verify your email to finalize your account creation"
-#~ msgstr "Vérifiez votre adresse de courriel pour finaliser la création de votre compte"
+#~ msgstr ""
+#~ "Vérifiez votre adresse de courriel pour finaliser la création de votre "
+#~ "compte"
 
 #~ msgid "To finalize your account creation, please click on the button below."
-#~ msgstr "Pour finaliser la création de votre compte, veuillez cliquer sur le bouton ci-dessous."
+#~ msgstr ""
+#~ "Pour finaliser la création de votre compte, veuillez cliquer sur le "
+#~ "bouton ci-dessous."
 
-#~ msgid "If you haven't ask for an account registration, you can simply ignore and delete this message."
-#~ msgstr "Si vous n'êtes pas à l'origine de cette demande d'inscription, vous pouvez simplement ignorer et supprimer ce message."
-
-#~ msgid "Your password has been updated"
-#~ msgstr "Votre mot de passe a été mis à jour"
+#~ msgid ""
+#~ "If you haven't ask for an account registration, you can simply ignore and "
+#~ "delete this message."
+#~ msgstr ""
+#~ "Si vous n'êtes pas à l'origine de cette demande d'inscription, vous "
+#~ "pouvez simplement ignorer et supprimer ce message."
 
 #~ msgid "This mail confirms your password update."
 #~ msgstr "Ce courriel confirme la mise à jour de votre mot de passe."
@@ -242,32 +500,50 @@ msgstr "Ajouter"
 #~ msgid "The password of your user account has been updated."
 #~ msgstr "Le mot de passe de votre compte utilisateur a été mis à jour."
 
-#~ msgid "If you did not initiate this request to renew your password, make sure :"
-#~ msgstr "Si vous n'êtes pas à l'origine de cette demande de renouvellement de mot de passe, assurez-vous :"
+#~ msgid ""
+#~ "If you did not initiate this request to renew your password, make sure :"
+#~ msgstr ""
+#~ "Si vous n'êtes pas à l'origine de cette demande de renouvellement de mot "
+#~ "de passe, assurez-vous :"
 
 #~ msgid "To <strong>secure your boxmail</strong> by setting a new password,"
-#~ msgstr "De <strong>sécuriser l'accès à votre boite mail</strong> en changeant son mot de passe,"
+#~ msgstr ""
+#~ "De <strong>sécuriser l'accès à votre boite mail</strong> en changeant son "
+#~ "mot de passe,"
 
-#~ msgid "To <strong>restart the password renewal procedure</strong> to set a new password."
-#~ msgstr "De <strong>relancer la procédure de mot de passe oublié</strong> pour définir un nouveau mot de passe."
+#~ msgid ""
+#~ "To <strong>restart the password renewal procedure</strong> to set a new "
+#~ "password."
+#~ msgstr ""
+#~ "De <strong>relancer la procédure de mot de passe oublié</strong> pour "
+#~ "définir un nouveau mot de passe."
 
 #~ msgid "Password renewal confirmation"
 #~ msgstr "Confirmation de renouvellement de mot de passe"
 
 #~ msgid "This is the validation email to renew your password."
-#~ msgstr "Ceci est le courriel de validation pour renouveler votre mot de passe."
+#~ msgstr ""
+#~ "Ceci est le courriel de validation pour renouveler votre mot de passe."
 
 #~ msgid "To renew your password, please click on the button below."
-#~ msgstr "Pour renouveler votre mot de passe, veuillez cliquer sur le bouton ci-dessous."
+#~ msgstr ""
+#~ "Pour renouveler votre mot de passe, veuillez cliquer sur le bouton ci-"
+#~ "dessous."
 
-#~ msgid "If you haven't ask for a password renewal, you can simply ignore and delete this message."
-#~ msgstr "Si vous n'avez pas demandé de réinitialisation de mot de passe, vous pouvez simplement ignorer et supprimer ce message."
+#~ msgid ""
+#~ "If you haven't ask for a password renewal, you can simply ignore and "
+#~ "delete this message."
+#~ msgstr ""
+#~ "Si vous n'avez pas demandé de réinitialisation de mot de passe, vous "
+#~ "pouvez simplement ignorer et supprimer ce message."
 
 #~ msgid "Renew my password"
 #~ msgstr "Renouveler mon mot de passe"
 
 #~ msgid "Access denied, please check your credentials or contact support."
-#~ msgstr "Accès refusé, veuillez vérifier vos informations d'identification ou contacter le support."
+#~ msgstr ""
+#~ "Accès refusé, veuillez vérifier vos informations d'identification ou "
+#~ "contacter le support."
 
 #~ msgid "You have to provide an email address to register."
 #~ msgstr "Vous devez renseigner une adresse de courriel pour vous inscrire."
@@ -285,7 +561,9 @@ msgstr "Ajouter"
 #~ msgstr "Merci de définir votre mot de passe."
 
 #~ msgid "You have to provide a valid email address to renew your password."
-#~ msgstr "Vous devez renseigner une adresse de courriel valide pour renouveler votre mot de passe."
+#~ msgstr ""
+#~ "Vous devez renseigner une adresse de courriel valide pour renouveler "
+#~ "votre mot de passe."
 
 #~ msgid "Please fill in your new password."
 #~ msgstr "Veuillez saisir votre nouveau mot de passe."
@@ -300,7 +578,8 @@ msgstr "Ajouter"
 #~ msgstr "Formulaire invalide, veuillez recommencer."
 
 #~ msgid "This is an automated email sent from <strong>FeedStack</strong>."
-#~ msgstr "Ceci est un mail automatique envoyé depuis <strong>FeedStack</strong>."
+#~ msgstr ""
+#~ "Ceci est un mail automatique envoyé depuis <strong>FeedStack</strong>."
 
 #~ msgid "Please click on the button to create your account."
 #~ msgstr "Veuillez cliquer sur le bouton pour créer votre compte."
