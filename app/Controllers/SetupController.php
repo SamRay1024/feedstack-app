@@ -343,7 +343,6 @@ class SetupController extends FrontController
 	private function createEnvFile()
 	{
 		$aEnvContent = [
-			'APP_NAME' => 'FeedStack',
 			'APP_PRODUCTION' => 'true',
 			'APP_BASE_URL' => server('HTTP_HOST'),
 			'APP_BASE_URI' => '/',

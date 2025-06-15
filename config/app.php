@@ -6,7 +6,7 @@ return [
 
 	/* ==== GLOBALS ========================================================= */
 
-	'name'				=> env('APP_NAME'),
+	'name'				=> 'FeedStack',
 	'production'		=> env('APP_PRODUCTION'),
 	'public_path'		=> $sBasePath .'/public',
 	'storage_path'		=> $sBasePath .'/storage',
@@ -32,6 +32,7 @@ return [
 			'port'		=> env('APP_DB_PORT', 0),
 			'username'	=> env('APP_DB_USERNAME', ''),
 			'password'	=> env('APP_DB_PASSWORD', ''),
+			'charset'	=> 'utf8mb4'
 		],
 		// 'other' => [
 		// 	'driver'	=> 'mysql',
@@ -40,6 +41,7 @@ return [
 		// 	'port'		=> 3306,
 		// 	'username'	=> 'user',
 		// 	'password'	=> 'pass',
+		// 	'charset	=> 'utf8mb4',
 		// 	'timeout'	=> null
 		// ]
 	],
@@ -81,17 +83,17 @@ return [
 
 	'mailer' => [
 
-		'driver' 	=> 'smtp', // 'mail', 'sendmail' or 'smtp'
-		// 'charset'	=> 'utf-8',
+		'driver' 	=> (string) env('APP_MAILER_DRIVER'), // 'mail', 'sendmail' or 'smtp'
+		'charset'	=> (string) env('APP_MAILER_CHARSET', 'utf-8'),
 
 		// smtp params below
-		'host'			=> 'localhost',
-		'port'			=> 1027,
-		// 'username'		=> '',
-		// 'password'		=> '',
+		'host'			=> (string) env('APP_MAILER_SMTP_HOST'),
+		'port'			=> (int) env('APP_MAILER_SMTP_PORT'),
+		'username'		=> (string) env('APP_MAILER_SMTP_USERNAME'),
+		'password'		=> (string) env('APP_MAILER_SMTP_PASSWORD'),
 		// 'encryption'	=> PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS
 
-		'from'			=> 'noreply@myapp.com',
-		'replyto'		=> 'support@myapp.com'
+		'from'			=> (string) env('APP_MAILER_FROM'),
+		'replyto'		=> (string) env('APP_MAILER_REPLYTO')
 	]
 ];
