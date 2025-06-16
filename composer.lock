@@ -365,12 +365,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SamRay1024/wlib-application.git",
-                "reference": "804f04bfa6083be9ab7bb2f5cf76d7ca4975abf1"
+                "reference": "5f809b17f66c2778fbf26f8685dd30ce9fedd124"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SamRay1024/wlib-application/zipball/804f04bfa6083be9ab7bb2f5cf76d7ca4975abf1",
-                "reference": "804f04bfa6083be9ab7bb2f5cf76d7ca4975abf1",
+                "url": "https://api.github.com/repos/SamRay1024/wlib-application/zipball/5f809b17f66c2778fbf26f8685dd30ce9fedd124",
+                "reference": "5f809b17f66c2778fbf26f8685dd30ce9fedd124",
                 "shasum": ""
             },
             "require": {
@@ -414,20 +414,20 @@
                 "issues": "https://github.com/SamRay1024/wlib-application/issues",
                 "source": "https://github.com/SamRay1024/wlib-application/tree/main"
             },
-            "time": "2025-06-07T22:01:46+00:00"
+            "time": "2025-06-15T21:32:41+00:00"
         },
         {
             "name": "wlib/db",
-            "version": "v1.3.0",
+            "version": "v1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SamRay1024/wlib-db.git",
-                "reference": "c6d0c7ad43bb31182bae8fce3077166b0e9b8840"
+                "reference": "99162bbf888160522b3dd48c5a4098c4be86f787"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SamRay1024/wlib-db/zipball/c6d0c7ad43bb31182bae8fce3077166b0e9b8840",
-                "reference": "c6d0c7ad43bb31182bae8fce3077166b0e9b8840",
+                "url": "https://api.github.com/repos/SamRay1024/wlib-db/zipball/99162bbf888160522b3dd48c5a4098c4be86f787",
+                "reference": "99162bbf888160522b3dd48c5a4098c4be86f787",
                 "shasum": ""
             },
             "require": {
@@ -464,9 +464,9 @@
             ],
             "support": {
                 "issues": "https://github.com/SamRay1024/wlib-db/issues",
-                "source": "https://github.com/SamRay1024/wlib-db/tree/v1.3.0"
+                "source": "https://github.com/SamRay1024/wlib-db/tree/v1.3.1"
             },
-            "time": "2025-06-04T22:36:52+00:00"
+            "time": "2025-06-15T21:30:46+00:00"
         },
         {
             "name": "wlib/dibox",
