@@ -470,16 +470,16 @@
         },
         {
             "name": "wlib/dibox",
-            "version": "v1.3.0",
+            "version": "v1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SamRay1024/wlib-dibox.git",
-                "reference": "1c275abe349bbae4ab3a3ba6b3505f2731f888bb"
+                "reference": "addbeb811246edf2042bb8aeb8d7a81cb5b096ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SamRay1024/wlib-dibox/zipball/1c275abe349bbae4ab3a3ba6b3505f2731f888bb",
-                "reference": "1c275abe349bbae4ab3a3ba6b3505f2731f888bb",
+                "url": "https://api.github.com/repos/SamRay1024/wlib-dibox/zipball/addbeb811246edf2042bb8aeb8d7a81cb5b096ff",
+                "reference": "addbeb811246edf2042bb8aeb8d7a81cb5b096ff",
                 "shasum": ""
             },
             "require": {
@@ -516,9 +516,9 @@
             ],
             "support": {
                 "issues": "https://github.com/SamRay1024/wlib-dibox/issues",
-                "source": "https://github.com/SamRay1024/wlib-dibox/tree/v1.3.0"
+                "source": "https://github.com/SamRay1024/wlib-dibox/tree/v1.3.1"
             },
-            "time": "2025-03-28T22:30:40+00:00"
+            "time": "2025-03-31T21:55:38+00:00"
         },
         {
             "name": "wlib/http-client",
