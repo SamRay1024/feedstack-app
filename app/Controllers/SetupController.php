@@ -276,19 +276,19 @@ class SetupController extends FrontController
 			if ($this->aFormData['db_driver'] == 'sqlite')
 			{
 				$this->aFormData['db_database'] = config('app.storage_path').'/db.sqlite';
-				$this->aFormData['db_username'] = null;
-				$this->aFormData['db_pwd'] = null;
-				$this->aFormData['db_host'] = null;
-				$this->aFormData['db_port'] = null;
+				$this->aFormData['db_username'] = '';
+				$this->aFormData['db_pwd'] = '';
+				$this->aFormData['db_host'] = '';
+				$this->aFormData['db_port'] = 0;
 			}
 			
 			$this->oDb = new Db(
-				$this->aFormData['db_driver'],
-				$this->aFormData['db_database'],
-				$this->aFormData['db_username'],
-				$this->aFormData['db_pwd'],
-				$this->aFormData['db_host'],
-				$this->aFormData['db_port'],
+				(string) $this->aFormData['db_driver'],
+				(string) $this->aFormData['db_database'],
+				(string) $this->aFormData['db_username'],
+				(string) $this->aFormData['db_pwd'],
+				(string) $this->aFormData['db_host'],
+				(int) $this->aFormData['db_port'],
 				'utf8mb4'
 			);
 			
