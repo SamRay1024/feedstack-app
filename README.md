@@ -19,7 +19,7 @@ La partie front-end est bâtie grâce à [AlpineJS](https://alpinejs.dev/). Les 
 
 ### Installer
 
-Ouvrez un terminal et jouez les instructions suivantes :
+Ouvrez un terminal, placez-vous dans le dossier où vous souhaitez installer FeedStack et jouez les instructions suivantes :
 
 ```bash
 git clone https://github.com/SamRay1024/feedstack-app
