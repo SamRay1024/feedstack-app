@@ -205,6 +205,9 @@ export let feeds = {
 		if (feed && feed.attributes[sCountName] != undefined)
 		{
 			feed.attributes[sCountName] += iDiff
+			
+			if (feed.attributes[sCountName] <= 0)
+				feed.attributes[sCountName] = 0;
 		}
 	}
 }

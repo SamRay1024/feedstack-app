@@ -122,7 +122,12 @@ export let articles = {
 			});
 
 			if (this.$store.current.view != '')
+			{
 				this.$store.counts[this.$store.current.view] += iDiff;
+
+				if (this.$store.counts[this.$store.current.view] <= 0)
+					this.$store.counts[this.$store.current.view] = 0;
+			}
 			else
 				this.$dispatch('views.reloadCounts');
 		});
@@ -211,7 +216,12 @@ export let articles = {
 			}
 
 			if (['today', 'later'].includes(this.$store.current.view))
+			{
 				this.$store.counts[this.$store.current.view] += iDiff;
+
+				if (this.$store.counts[this.$store.current.view] <= 0)
+					this.$store.counts[this.$store.current.view] = 0;
+			}
 			else
 				this.$dispatch('views.reloadCounts');
 		}
