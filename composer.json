@@ -1,8 +1,6 @@
 {
     "require": {
         "wlib/application": "dev-main",
-        "wlib/http-client": "^1.0",
-        "phpmailer/phpmailer": "^6.9",
-        "itsgoingd/clockwork": "^5.3"
+        "wlib/http-client": "^1.0"
     }
 }

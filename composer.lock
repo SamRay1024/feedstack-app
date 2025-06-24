@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c3ffe9189a591d30ac6dcec503e4c976",
+    "content-hash": "c50261770798e1c3170ffe5eb11e4a1a",
     "packages": [
         {
             "name": "itsgoingd/clockwork",
