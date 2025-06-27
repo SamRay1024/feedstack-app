@@ -1,6 +1,5 @@
 .vscode
 .env
-/config/pkey.file
 /public/vendor
 /storage/cache/*.*
 /storage/logs/*.*
