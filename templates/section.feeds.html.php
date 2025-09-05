@@ -2,9 +2,11 @@
 	<h1 class="pas bigger" x-data="actions">
 		<i class="ti ti-logo"
 			:class="{'ti-stack-3': !$store.sys.isFetching, 'ti-loader-2 spin': $store.sys.isFetching}"></i> <?= $appname ?>
-		<i class="ti ti-logout right" @click="logout" title="<?= __('Logout') ?>"></i>
-		<i class="ti ti-settings right" title="<?= __('Settings') ?>"></i>
-		<i class="ti ti-cloud-download right" @click="update" title="<?= __('Update') ?>"></i>
+		<div class="menu">
+			<i class="ti ti-logout act-link" @click="logout" title="<?= __('Logout') ?>"></i>
+			<i class="ti ti-settings act-link" title="<?= __('Settings') ?>"></i>
+			<i class="ti ti-cloud-download act-link" @click="update" title="<?= __('Update') ?>"></i>
+		</div>
 	</h1>
 
 	<ul id="views" class="list pan" x-data="views">
