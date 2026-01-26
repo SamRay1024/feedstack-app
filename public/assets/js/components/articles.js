@@ -92,6 +92,8 @@ export let articles = {
 			'index': iIndex
 		});
 
+		document.getElementById('article')?.scrollTo(0, 0);
+
 		if (this.iMarkAsReadTimeoutId)
 			clearTimeout(this.iMarkAsReadTimeoutId);
 
