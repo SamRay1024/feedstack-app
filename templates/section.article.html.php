@@ -1,4 +1,4 @@
-<section id="article" class="pam" x-data="article">
+<section id="article" x-data="article">
 	<template x-if="current">
 		<div>
 			<div class="article-toolbar mbs">
@@ -16,6 +16,9 @@
 					<i class="wbtn ti ti-archive" title="<?= __('Archive article') ?>" x-bind="trigger"></i>
 				</span>
 
+				<a target="_blank" :href="current.attributes.link"><i
+					class="wbtn ti ti-link" title="<?= __('Open complete article') ?>"></i></a>
+
 				<span x-data="deleteArticle()" x-show="!current.attributes.deleted_at">
 					<i class="wbtn wbtn-red ti ti-check" title="<?= __('Confirm') ?>" x-bind="confirm"></i>
 					<i class="wbtn ti ti-trash" title="<?= __('Delete article') ?>" x-bind="trigger"></i>
@@ -29,7 +32,7 @@
 					<i class="wbtn ti ti-trash-x" title="<?= __('Remove from trash') ?>" x-bind="trigger"></i>
 				</span>
 			</div>
-			<header class="pam pts">
+			<header class="mam pam pts">
 				<h1 class="biggest" x-text="current.attributes.title"></h1>
 
 				<span class="meta">
