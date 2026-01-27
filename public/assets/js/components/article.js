@@ -1,6 +1,7 @@
 export let article = {
 	current: false,
 	iCurrentIndex: -1,
+	scrollListener: null,
 
 	init()
 	{
@@ -8,7 +9,30 @@ export let article = {
 		{
 			this.current = event.detail.article;
 			this.iCurrentIndex = (event.detail.index >= 0 ? event.detail.index : -1);
+			this.setupScrollListener();
 		});
+	},
+
+	setupScrollListener()
+	{
+		if (this.scrollListener)
+			document.getElementById('article')?.removeEventListener('scroll', this.scrollListener);
+
+		this.scrollListener = () => 
+		{
+			const articleElement = document.getElementById('article');
+			const toolbarElement = document.querySelector('.article-toolbar');
+
+			if (articleElement && toolbarElement)
+			{
+				if (articleElement.scrollTop > 0)
+					toolbarElement.classList.add('shadow');
+				else
+					toolbarElement.classList.remove('shadow');
+			}
+		};
+
+		document.getElementById('article')?.addEventListener('scroll', this.scrollListener);
 	},
 
 	prev()
