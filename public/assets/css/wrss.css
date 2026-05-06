@@ -109,7 +109,6 @@ html {
 }
 
 .meta {
-	display: block;
 	font-size: .8em;
 	color: var(--color-meta);
 }

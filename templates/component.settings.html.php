@@ -10,7 +10,7 @@
 					<div class="winput">
 						<input type="number" id="updateInterval" name="update_interval"
 							x-model="updateInterval" min="5" max="1440" step="5">
-						<?= __('minutes') ?>
+						<?= __('minutes') ?><br />
 						<small class="meta"><?= __('5 minutes minimum, 24 hours maximum') ?></small>
 					</div>
 				</div>
