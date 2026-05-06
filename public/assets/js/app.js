@@ -3,6 +3,7 @@ import {views} from './components/views.js';
 import {feeds} from './components/feeds.js';
 import {articles} from './components/articles.js';
 import {article} from './components/article.js';
+import {settings} from './components/settings.js';
 
 document.addEventListener('alpine:init', () =>
 {
@@ -13,28 +14,61 @@ document.addEventListener('alpine:init', () =>
 	 * - feed id
 	 */
 	Alpine.store('current', {'view': '', 'feed': 0});
+
+	/**
+	 * Global counts values.
+	 */
 	Alpine.store('counts', {'today': 0, 'later': 0});
+
+	/**
+	 * Settings state.
+	 */
+	Alpine.store('settings', {
+		bSettingsVisible: false,
+		updateInterval: 30
+	});
+
+	/**
+	 * Store for system stuff.
+	 */
 	Alpine.store('sys', {
 		isFetching: 0,
+
 		fetch: function (method, uri, body)
 		{
 			this.isFetching++;
-			return utils._fetch(method, uri, body).then((response) =>
-			{
+			return utils._fetch(method, uri, body).then((response) => {
 				this.isFetching--;
 				return response;
 			});
+		},
+
+		loadSettings: function ()
+		{
+			this.fetch('GET', 'params').then(response => {
+				if (response.data && response.data.update_interval) {
+					Alpine.store('settings').updateInterval = Math.floor(parseInt(response.data.update_interval));
+				}
+			})
 		}
 	});
+
+	Alpine.store('sys').loadSettings();
 
 	/**
 	 * Main actions.
 	 */
-	Alpine.data('actions', () => ({
-
+	Alpine.data('actions', () => (
+	{
 		logout() { window.location = BASE_URL + LOGOUT_URI; },
-		update() { this.$dispatch('feeds.fetchAll'); }
+		update() { this.$dispatch('feeds.fetchAll'); },
+		settings() { this.$dispatch('settings.open'); }
 	}));
+
+	/**
+	 * Settings dialog.
+	 */
+	Alpine.data('settings', () => (settings));
 
 	/**
 	 * Feeds views. 

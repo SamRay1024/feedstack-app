@@ -33,6 +33,7 @@
 
 	<!-- == GENERIC CONFIRM MODAL ========================================== -->
 	<?= $this->render('component.confirm') ?>
+	<?= $this->render('component.settings') ?>
 </body>
 
 </html>

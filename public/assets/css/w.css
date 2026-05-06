@@ -749,6 +749,10 @@ textarea.invalid {
 .wform-inline label { padding: 5px; }
 
 /* Aligned form */
+.wform-aligned input,
+.wform-aligned select {
+	display: inline-block;
+}
 .wform-aligned .wfield {
 	clear: both;
 	width: 100%;
@@ -967,7 +971,7 @@ th { background-color: #e0e0e0; }
 
 /* spacing helpers
 p,m = padding, margin
-a,t,r,b,l = all, top, right, bottom, left
+a,t,r,b,l,v,h = all, top, right, bottom, left, vertical (l+r), horizontal (t+b)
 xs,s,m,l,xl,n = extra small, small, medium, large, extra large, none
 */
 .man 	{ margin: 0; }
@@ -1006,6 +1010,18 @@ xs,s,m,l,xl,n = extra small, small, medium, large, extra large, none
 .mlm	{ margin-left: 20px; }
 .mll	{ margin-left: 40px; }
 .mlxl	{ margin-left: 80px; }
+.mhn	{ margin-left: 0; margin-right: 0; }
+.mhxs	{ margin-left: 5px; margin-right: 5px; }
+.mhs	{ margin-left: 10px; margin-right: 100px; }
+.mhm	{ margin-left: 20px; margin-right: 20px; }
+.mhl	{ margin-left: 40px; margin-right: 40px; }
+.mhxl	{ margin-left: 80px; margin-right: 80px; }
+.mvn	{ margin-top: 0; margin-bottom: 0; }
+.mvxs	{ margin-top: 5px; margin-bottom: 5px; }
+.mvs	{ margin-top: 10px; margin-bottom: 100px; }
+.mvm	{ margin-top: 20px; margin-bottom: 20px; }
+.mvl	{ margin-top: 40px; margin-bottom: 40px; }
+.mvxl	{ margin-top: 80px; margin-bottom: 80px; }
 .ptn	{ padding-top: 0; }
 .ptxs	{ padding-top: 5px; }
 .pts	{ padding-top: 10px; }
@@ -1030,6 +1046,18 @@ xs,s,m,l,xl,n = extra small, small, medium, large, extra large, none
 .plm	{ padding-left: 20px; }
 .pll	{ padding-left: 40px; }
 .plxl	{ padding-left: 80px; }
+.phn	{ padding-left: 0; padding-right: 0; }
+.phxs	{ padding-left: 5px; padding-right: 5px; }
+.phs	{ padding-left: 10px; padding-right: 100px; }
+.phm	{ padding-left: 20px; padding-right: 20px; }
+.phl	{ padding-left: 40px; padding-right: 40px; }
+.phxl	{ padding-left: 80px; padding-right: 80px; }
+.pvn	{ padding-top: 0; padding-bottom: 0; }
+.pvxs	{ padding-top: 5px; padding-bottom: 5px; }
+.pvs	{ padding-top: 10px; padding-bottom: 100px; }
+.pvm	{ padding-top: 20px; padding-bottom: 20px; }
+.pvl	{ padding-top: 40px; padding-bottom: 40px; }
+.pvxl	{ padding-top: 80px; padding-bottom: 80px; }
 
 @media (max-width: 768px) {
 

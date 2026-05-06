@@ -10,6 +10,8 @@ export let feeds = {
 	bIsSending: false,
 	bIsChecking: false,
 	bIsChecked: false,
+	timeUntilNextFetch: 1800, // Temps en secondes (30 minutes)
+	progress: 100, // Progression en pourcentage (pleine au début)
 
 	init()
 	{
@@ -28,6 +30,45 @@ export let feeds = {
 			this.updateCount(event.detail.feed_id, event.detail.counter_name, event.detail.diff);
 		});
 		window.addEventListener('feeds.fetchAll', () => { this.fetchAll(); });
+		window.addEventListener('feeds.updateInterval', (event) => { this.updateInterval(event.detail); });
+
+		this.loadUpdateInterval();
+	},
+
+	loadUpdateInterval()
+	{
+		this.$store.sys.fetch('GET', 'params').then(response =>
+		{
+			this.updateInterval(response.data && response.data.update_interval
+				? parseInt(response.data.update_interval)
+				: 1800
+			);
+		});
+	},
+
+	updateInterval(minutes)
+	{
+		this.updateIntervalSeconds = minutes * 60;
+		this.timeUntilNextFetch = minutes * 60;
+		this.progress = 100;
+
+		if (this.countdownInterval)
+		{
+			clearInterval(this.countdownInterval);
+		}
+
+		this.countdownInterval = setInterval(() =>
+		{
+			this.timeUntilNextFetch--;
+			this.progress = (this.timeUntilNextFetch / this.updateIntervalSeconds) * 100;
+
+			if (this.timeUntilNextFetch <= 0)
+			{
+				this.fetchAll();
+				this.timeUntilNextFetch = this.updateIntervalSeconds;
+				this.progress = 100;
+			}
+		}, 1000);
 	},
 
 	loadFeeds()
@@ -44,6 +85,10 @@ export let feeds = {
 
 	fetchAll()
 	{
+		const interval = this.updateIntervalSeconds || 1800;
+		this.timeUntilNextFetch = interval;
+		this.progress = 100;
+
 		Promise
 			.all(Object.values(this.feeds).map(feed => this.updateFeed(feed)))
 			.then(() => 

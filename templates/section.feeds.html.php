@@ -4,7 +4,7 @@
 			:class="{'ti-stack-3': !$store.sys.isFetching, 'ti-loader-2 spin': $store.sys.isFetching}"></i> <?= $appname ?>
 		<div class="menu">
 			<i class="ti ti-logout act-link" @click="logout" title="<?= __('Logout') ?>"></i>
-			<i class="ti ti-settings act-link" title="<?= __('Settings') ?>"></i>
+			<i class="ti ti-settings act-link" @click="settings" title="<?= __('Settings') ?>"></i>
 			<i class="ti ti-cloud-download act-link" @click="update" title="<?= __('Update') ?>"></i>
 		</div>
 	</h1>
@@ -94,7 +94,9 @@
 						<div class="wfield">
 							<label><?= __('Title:') ?></label>
 							<div class="winput">
-								<input class="w50" type="text" name="title" required readonly x-model="model.title" :class="{'invalid': titleIsInvalid}">
+								<input class="w50" type="text" name="title"
+									required readonly x-model="model.title"
+									:class="{'invalid': titleIsInvalid}">
 							</div>
 						</div>
 						<div class="wfield" x-show="sFormFeedback">
@@ -108,10 +110,15 @@
 							@click="check" :disabled="bIsChecking"><?= __('Check') ?></button>
 
 						<button class="wbtn-primary" type="submit"
-							:disabled="!bIsChecked || bIsSending" x-text="model.id ? '<?= __('Confirm') ?>' : '<?= __('Add') ?>'"></button>
+							:disabled="!bIsChecked || bIsSending"
+							x-text="model.id ? '<?= __('Confirm') ?>' : '<?= __('Add') ?>'"></button>
 					</div>
 				</form>
 			</div>
 		</template>
+
+		<div class="fetch-progress">
+			<div class="progress-bar" :style="{ width: progress + '%' }"></div>
+		</div>
 	</div>
 </section>

@@ -32,7 +32,7 @@
 					<i class="wbtn ti ti-trash-x" title="<?= __('Remove from trash') ?>" x-bind="trigger"></i>
 				</span>
 			</div>
-			<header class="mam pam pts">
+			<header class="mhl mvm pam pts">
 				<h1 class="biggest" x-text="current.attributes.title"></h1>
 
 				<span class="meta">
@@ -52,7 +52,7 @@
 				</span>
 			</header>
 
-			<article class="pam" x-html="current.attributes.content"></article>
+			<article class="phl pvm" x-html="current.attributes.content"></article>
 		</div>
 	</template>
 </section>
