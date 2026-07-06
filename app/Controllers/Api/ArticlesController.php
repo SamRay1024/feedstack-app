@@ -20,9 +20,9 @@ class ArticlesController extends RestController
 		$this->articles = $this->app->make(Articles::class, [$this->db]);
 	}
 
-	public function get($id)
+	public function get($id = 0)
 	{
-		(is_numeric($id) ? $this->getOne($id) : $this->search());
+		($id ? $this->getOne($id) : $this->search());
 	}
 
 	public function delete()

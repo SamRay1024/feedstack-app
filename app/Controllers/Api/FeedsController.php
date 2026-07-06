@@ -22,7 +22,7 @@ class FeedsController extends RestController
 		$this->feeds = $this->app->getTable(Feeds::class);
 	}
 
-	public function get($id)
+	public function get($id = 0)
 	{
 		($id ? $this->getOne($id) : $this->getList());
 	}
