@@ -84,6 +84,12 @@ class SetupController extends FrontController
 
 	private function showSetupForm()
 	{
+		if ($this->hasParam('phpinfo'))
+		{
+			phpinfo();
+			exit();
+		}
+
 		$this->renderScreenResponse('setup_form', [
 			'errors' => $this->aFormErrors,
 			'data' => $this->aFormData

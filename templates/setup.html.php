@@ -15,7 +15,7 @@
 			background: #f5f5f5;
 		}
 
-		form {
+		form, .wcallout {
 			background: #fff;
 			border-radius: var(--border-radius);
 			box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
@@ -67,7 +67,7 @@
 		<?php endif; ?>
 
 		<?php if (isset($success) && $success) : ?>
-			<p class="wcallout wsuccess mbl"><?= $success ?></p>
+		<p class="wcallout wsuccess mbl"><?= $success ?></p>
 		<?php endif; ?>
 
 		<form method="post" class="pal wform-aligned" x-data="setup">
@@ -110,6 +110,8 @@
 
 			<h4><i class="ti ti-database"></i> <?= __('Database') ?></h4>
 
+			<a href="?phpinfo" target="_blank">phpinfo()</a>
+
 			<div x-data="{mysql: <?= post('db_driver') == 'mysql' ? 'true' : 'false' ?>}">
 
 				<div class="wfield">
@@ -142,7 +144,7 @@
 					<label for="db_username"><?= __('Username:') ?></label>
 					<div class="winput">
 						<input type="text" name="db_username" id="db_user"
-							value="<?= post('db_user') ?>">
+							value="<?= post('db_username') ?>">
 					</div>
 				</div>
 				<div class="wfield" x-show="mysql">
