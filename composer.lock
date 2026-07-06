@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "itsgoingd/clockwork",
-            "version": "v5.3.4",
+            "version": "v5.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itsgoingd/clockwork.git",
-                "reference": "c27ad77a08a9e58bf0049de46969fa4fe3b506e5"
+                "reference": "d928483e231f042dbff9258795cb17aadaebc7d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/c27ad77a08a9e58bf0049de46969fa4fe3b506e5",
-                "reference": "c27ad77a08a9e58bf0049de46969fa4fe3b506e5",
+                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/d928483e231f042dbff9258795cb17aadaebc7d0",
+                "reference": "d928483e231f042dbff9258795cb17aadaebc7d0",
                 "shasum": ""
             },
             "require": {
@@ -72,7 +72,7 @@
             ],
             "support": {
                 "issues": "https://github.com/itsgoingd/clockwork/issues",
-                "source": "https://github.com/itsgoingd/clockwork/tree/v5.3.4"
+                "source": "https://github.com/itsgoingd/clockwork/tree/v5.3.5"
             },
             "funding": [
                 {
@@ -80,20 +80,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-02-09T15:57:21+00:00"
+            "time": "2025-09-14T15:34:49+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
-            "version": "v6.10.0",
+            "version": "v6.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPMailer/PHPMailer.git",
-                "reference": "bf74d75a1fde6beaa34a0ddae2ec5fce0f72a144"
+                "reference": "d1ac35d784bf9f5e61b424901d5a014967f15b12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/bf74d75a1fde6beaa34a0ddae2ec5fce0f72a144",
-                "reference": "bf74d75a1fde6beaa34a0ddae2ec5fce0f72a144",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/d1ac35d784bf9f5e61b424901d5a014967f15b12",
+                "reference": "d1ac35d784bf9f5e61b424901d5a014967f15b12",
                 "shasum": ""
             },
             "require": {
@@ -153,7 +153,7 @@
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
             "support": {
                 "issues": "https://github.com/PHPMailer/PHPMailer/issues",
-                "source": "https://github.com/PHPMailer/PHPMailer/tree/v6.10.0"
+                "source": "https://github.com/PHPMailer/PHPMailer/tree/v6.12.0"
             },
             "funding": [
                 {
@@ -161,7 +161,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-04-24T15:19:31+00:00"
+            "time": "2025-10-15T16:49:08+00:00"
         },
         {
             "name": "pomo/pomo",
@@ -286,22 +286,22 @@
         },
         {
             "name": "tracy/tracy",
-            "version": "v2.10.10",
+            "version": "v2.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "32303e02c222eea8571402a8310fc3fe70422c37"
+                "reference": "535eda4871fd04f2756c8d95f6bdfa43706d79be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/32303e02c222eea8571402a8310fc3fe70422c37",
-                "reference": "32303e02c222eea8571402a8310fc3fe70422c37",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/535eda4871fd04f2756c8d95f6bdfa43706d79be",
+                "reference": "535eda4871fd04f2756c8d95f6bdfa43706d79be",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "ext-session": "*",
-                "php": "8.0 - 8.4"
+                "php": "8.2 - 8.5"
             },
             "conflict": {
                 "nette/di": "<3.0"
@@ -311,21 +311,26 @@
                 "nette/di": "^3.0",
                 "nette/http": "^3.0",
                 "nette/mail": "^3.0 || ^4.0",
-                "nette/tester": "^2.2",
+                "nette/phpstan-rules": "^1.0",
+                "nette/tester": "^2.6",
                 "nette/utils": "^3.0 || ^4.0",
-                "phpstan/phpstan": "^1.0",
+                "phpstan/extension-installer": "^1.4@stable",
+                "phpstan/phpstan": "^2.1@stable",
                 "psr/log": "^1.0 || ^2.0 || ^3.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.10-dev"
+                    "dev-master": "2.12-dev"
                 }
             },
             "autoload": {
                 "files": [
                     "src/Tracy/functions.php"
                 ],
+                "psr-4": {
+                    "Tracy\\": "src"
+                },
                 "classmap": [
                     "src"
                 ]
@@ -355,9 +360,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/tracy/issues",
-                "source": "https://github.com/nette/tracy/tree/v2.10.10"
+                "source": "https://github.com/nette/tracy/tree/v2.12.0"
             },
-            "time": "2025-04-28T14:35:15+00:00"
+            "time": "2026-05-04T00:23:53+00:00"
         },
         {
             "name": "wlib/application",
@@ -365,25 +370,29 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SamRay1024/wlib-application.git",
-                "reference": "5f809b17f66c2778fbf26f8685dd30ce9fedd124"
+                "reference": "a71dc05f84b5dd7d0d69653cecc7fb1e2ef71e11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SamRay1024/wlib-application/zipball/5f809b17f66c2778fbf26f8685dd30ce9fedd124",
-                "reference": "5f809b17f66c2778fbf26f8685dd30ce9fedd124",
+                "url": "https://api.github.com/repos/SamRay1024/wlib-application/zipball/a71dc05f84b5dd7d0d69653cecc7fb1e2ef71e11",
+                "reference": "a71dc05f84b5dd7d0d69653cecc7fb1e2ef71e11",
                 "shasum": ""
             },
             "require": {
                 "itsgoingd/clockwork": "^5.3",
                 "phpmailer/phpmailer": "^6.9",
-                "tracy/tracy": "^2.9",
+                "tracy/tracy": "^2.12",
                 "wlib/db": "^1.0",
                 "wlib/dibox": "^1.0",
                 "wlib/http-server": "^1.0",
                 "wlib/i18n": "^1.0"
             },
             "require-dev": {
-                "pestphp/pest": "^2.5"
+                "pestphp/pest": "^2.5",
+                "rector/rector": "^2.5"
+            },
+            "suggest": {
+                "psr/log": "PSR-3 Logger interface for error logging (optional)"
             },
             "default-branch": true,
             "type": "library",
@@ -412,22 +421,22 @@
             ],
             "support": {
                 "issues": "https://github.com/SamRay1024/wlib-application/issues",
-                "source": "https://github.com/SamRay1024/wlib-application/tree/main"
+                "source": "https://github.com/SamRay1024/wlib-application/tree/v.0.3.0"
             },
-            "time": "2025-06-15T21:32:41+00:00"
+            "time": "2026-07-05T22:20:23+00:00"
         },
         {
             "name": "wlib/db",
-            "version": "v1.3.1",
+            "version": "v1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SamRay1024/wlib-db.git",
-                "reference": "99162bbf888160522b3dd48c5a4098c4be86f787"
+                "reference": "9c5cf10757e27e2479f4c6be2453d291e3a48f47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SamRay1024/wlib-db/zipball/99162bbf888160522b3dd48c5a4098c4be86f787",
-                "reference": "99162bbf888160522b3dd48c5a4098c4be86f787",
+                "url": "https://api.github.com/repos/SamRay1024/wlib-db/zipball/9c5cf10757e27e2479f4c6be2453d291e3a48f47",
+                "reference": "9c5cf10757e27e2479f4c6be2453d291e3a48f47",
                 "shasum": ""
             },
             "require": {
@@ -464,9 +473,9 @@
             ],
             "support": {
                 "issues": "https://github.com/SamRay1024/wlib-db/issues",
-                "source": "https://github.com/SamRay1024/wlib-db/tree/v1.3.1"
+                "source": "https://github.com/SamRay1024/wlib-db/tree/v1.3.2"
             },
-            "time": "2025-06-15T21:30:46+00:00"
+            "time": "2026-03-11T23:01:09+00:00"
         },
         {
             "name": "wlib/dibox",
@@ -569,20 +578,20 @@
         },
         {
             "name": "wlib/http-server",
-            "version": "v1.2.0",
+            "version": "v1.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SamRay1024/wlib-http-server.git",
-                "reference": "4202a29ef6b342836c5eca8e08027d35216eef57"
+                "reference": "08556f3f194e58e035ad3a119637b88b220a1553"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SamRay1024/wlib-http-server/zipball/4202a29ef6b342836c5eca8e08027d35216eef57",
-                "reference": "4202a29ef6b342836c5eca8e08027d35216eef57",
+                "url": "https://api.github.com/repos/SamRay1024/wlib-http-server/zipball/08556f3f194e58e035ad3a119637b88b220a1553",
+                "reference": "08556f3f194e58e035ad3a119637b88b220a1553",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1.0",
+                "php": ">=7.4.0",
                 "wlib/utils": "^1.0"
             },
             "require-dev": {
@@ -615,9 +624,9 @@
             ],
             "support": {
                 "issues": "https://github.com/SamRay1024/wlib-http-server/issues",
-                "source": "https://github.com/SamRay1024/wlib-http-server/tree/v1.2.0"
+                "source": "https://github.com/SamRay1024/wlib-http-server/tree/v1.2.4"
             },
-            "time": "2024-02-25T11:17:43+00:00"
+            "time": "2026-07-05T17:11:20+00:00"
         },
         {
             "name": "wlib/i18n",
@@ -674,16 +683,16 @@
         },
         {
             "name": "wlib/tools",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SamRay1024/wlib-tools.git",
-                "reference": "476b37d8d41856b2f25e8f552cd8ece86725133e"
+                "reference": "40979352b8a4bbfaf920c04c43f2ce2fca2d9b2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SamRay1024/wlib-tools/zipball/476b37d8d41856b2f25e8f552cd8ece86725133e",
-                "reference": "476b37d8d41856b2f25e8f552cd8ece86725133e",
+                "url": "https://api.github.com/repos/SamRay1024/wlib-tools/zipball/40979352b8a4bbfaf920c04c43f2ce2fca2d9b2c",
+                "reference": "40979352b8a4bbfaf920c04c43f2ce2fca2d9b2c",
                 "shasum": ""
             },
             "require": {
@@ -718,22 +727,22 @@
             ],
             "support": {
                 "issues": "https://github.com/SamRay1024/wlib-tools/issues",
-                "source": "https://github.com/SamRay1024/wlib-tools/tree/v1.0.0"
+                "source": "https://github.com/SamRay1024/wlib-tools/tree/v1.0.1"
             },
-            "time": "2023-10-09T00:18:12+00:00"
+            "time": "2026-07-05T08:51:47+00:00"
         },
         {
             "name": "wlib/utils",
-            "version": "v1.6.0",
+            "version": "v1.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SamRay1024/wlib-utils.git",
-                "reference": "e08a304e0c60297215ccbb0ca3a606c5f3dc13ee"
+                "reference": "fda32ba31bbfecf6e5748f48d751150c468d1de9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SamRay1024/wlib-utils/zipball/e08a304e0c60297215ccbb0ca3a606c5f3dc13ee",
-                "reference": "e08a304e0c60297215ccbb0ca3a606c5f3dc13ee",
+                "url": "https://api.github.com/repos/SamRay1024/wlib-utils/zipball/fda32ba31bbfecf6e5748f48d751150c468d1de9",
+                "reference": "fda32ba31bbfecf6e5748f48d751150c468d1de9",
                 "shasum": ""
             },
             "require": {
@@ -774,9 +783,9 @@
             ],
             "support": {
                 "issues": "https://github.com/SamRay1024/wlib-utils/issues",
-                "source": "https://github.com/SamRay1024/wlib-utils/tree/v1.6.0"
+                "source": "https://github.com/SamRay1024/wlib-utils/tree/v1.6.2"
             },
-            "time": "2025-06-08T23:03:09+00:00"
+            "time": "2026-07-05T11:30:06+00:00"
         }
     ],
     "packages-dev": [],
@@ -787,7 +796,7 @@
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform": {},
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
 }

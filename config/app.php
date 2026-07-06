@@ -95,5 +95,12 @@ return [
 
 		'from'			=> (string) env('APP_MAILER_FROM'),
 		'replyto'		=> (string) env('APP_MAILER_REPLYTO')
+	],
+
+	/* ==== SERVICE PROVIDERS =============================================== */
+
+	'additional_providers' => [
+		\wlib\Application\Sys\TracyDiProvider::class,
+		\App\Providers\SetupDiProvider::class
 	]
 ];
